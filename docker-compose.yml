@@ -23,22 +23,16 @@ services:
     restart: always
   server:
     <<: *datavis-backend
-    command: dev_server
+    command: server
     ports:
       - "5000:5000"
-      - "5678:5678"
     environment:
-      PYTHONUNBUFFERED: 0
-      REDASH_LOG_LEVEL: "INFO"
       REDASH_REDIS_URL: "redis://redis:6379/0"
       REDASH_DATABASE_URL: "postgresql://postgres@postgres/postgres"
-      REDASH_RATELIMIT_ENABLED: "false"
   worker:
     <<: *datavis-backend
     command: scheduler
     environment:
-      PYTHONUNBUFFERED: 0
-      REDASH_LOG_LEVEL: "INFO"
       REDASH_REDIS_URL: "redis://redis:6379/0"
       REDASH_DATABASE_URL: "postgresql://postgres@postgres/postgres"
       QUEUES: "queries,scheduled_queries,celery,schemas"
