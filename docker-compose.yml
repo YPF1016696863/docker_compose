@@ -29,18 +29,29 @@ services:
     environment:
       REDASH_REDIS_URL: "redis://redis:6379/0"
       REDASH_DATABASE_URL: "postgresql://postgres@postgres/postgres"
+      REDASH_COOKIE_SECRET: "pLFJ7NeRGeWZkGbtryjBeWK2GEwCjT7D"
+      REDASH_MAIL_SERVER: "localhost"
+      REDASH_MAIL_PORT: "25"
+      REDASH_MAIL_USE_TLS: "false"
+      REDASH_MAIL_USE_SSL: "false"
+      REDASH_MAIL_USERNAME: "None"
+      REDASH_MAIL_PASSWORD: "None"
+#      REDASH_MAIL_DEFAULT_SENDER: "admin@chinambse.com"
   worker:
     <<: *datavis-backend
     command: scheduler
     environment:
       REDASH_REDIS_URL: "redis://redis:6379/0"
       REDASH_DATABASE_URL: "postgresql://postgres@postgres/postgres"
+      REDASH_COOKIE_SECRET: "pLFJ7NeRGeWZkGbtryjBeWK2GEwCjT7D"
       QUEUES: "queries,scheduled_queries,celery,schemas"
       WORKERS_COUNT: 2
   mysql-demo:
     image: mysql:5.6
     volumes:
       - /opt/redash/mysql_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: "rukshani"
     restart: always
