@@ -4,9 +4,9 @@ curl -i -X POST \
    -H "Content-Type:application/json" \
    -d \
 '{
-  "email":"demo.user.6@zkhoneycomb.com",
+  "email":"test@gmail.com",
   "password":"fcfcfc",
   "org_name":"fc",
-  "name":"测试账号6"
+  "name":"Test Account"
 }' \
  'http://localhost:5000/api/setup'
