@@ -26,12 +26,16 @@ services:
     command: server
     ports:
       - "5000:5000"
+    volumes:
+      - /opt/redash/uploads:/app/uploads
     environment:
       REDASH_REDIS_URL: "redis://redis:6379/0"
       REDASH_DATABASE_URL: "postgresql://postgres@postgres/postgres"
   worker:
     <<: *datavis-backend
     command: scheduler
+    volumes:
+      - /opt/redash/uploads:/app/uploads
     environment:
       REDASH_REDIS_URL: "redis://redis:6379/0"
       REDASH_DATABASE_URL: "postgresql://postgres@postgres/postgres"
