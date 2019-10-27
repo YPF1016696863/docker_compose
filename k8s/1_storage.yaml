@@ -52,29 +52,6 @@ spec:
           values:
           - ubuntu1804-slave
 ---
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: mysql-volume
-  namespace: datavis
-spec:
-  capacity:
-    storage: 1Gi
-  accessModes:
-  - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Retain
-  storageClassName: local-storage
-  local:
-    path: /opt/datavis/uploads
-  nodeAffinity:
-    required:
-      nodeSelectorTerms:
-      - matchExpressions:
-        - key: kubernetes.io/hostname
-          operator: In
-          values:
-          - ubuntu1804-slave
----
 apiVersion: "v1"
 kind: "PersistentVolumeClaim"
 metadata:
@@ -88,20 +65,6 @@ spec:
       storage: "1Gi"
   storageClassName: local-storage
   volumeName: "pg-volume"
----
-apiVersion: "v1"
-kind: "PersistentVolumeClaim"
-metadata:
-  name: "mysql-volume-claim"
-  namespace: datavis
-spec:
-  accessModes:
-    - "ReadWriteOnce"
-  resources:
-    requests:
-      storage: "1Gi"
-  storageClassName: local-storage
-  volumeName: "mysql-volume"
 ---
 apiVersion: "v1"
 kind: "PersistentVolumeClaim"
