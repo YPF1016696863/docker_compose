@@ -9,8 +9,7 @@ volumeBindingMode: WaitForFirstConsumer
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: pg-volume
-  namespace: datavis
+  name: datavis-pg-volume
 spec:
   capacity:
     storage: 1Gi
@@ -32,8 +31,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: uploads-volume
-  namespace: datavis
+  name: datavis-uploads-volume
 spec:
   capacity:
     storage: 1Gi
@@ -64,7 +62,7 @@ spec:
     requests:
       storage: "1Gi"
   storageClassName: local-storage
-  volumeName: "pg-volume"
+  volumeName: "datavis-pg-volume"
 ---
 apiVersion: "v1"
 kind: "PersistentVolumeClaim"
@@ -78,4 +76,4 @@ spec:
     requests:
       storage: "1Gi"
   storageClassName: local-storage
-  volumeName: "uploads-volume"
+  volumeName: "datavis-uploads-volume"
