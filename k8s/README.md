@@ -1,5 +1,6 @@
 ##Prerequisite
 kubectl create ns datavis
+docker login or pull the images needed
 
 ##Manual updates needed
 * 1_storage.yaml, node affiation, node name updates to the real one
