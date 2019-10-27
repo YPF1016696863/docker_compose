@@ -9,4 +9,4 @@ curl -i -X POST \
   "org_name":"fc",
   "name":"Test Account"
 }' \
- 'http://localhost:5000/api/setup'
+ 'http://172.16.83.134:30050/api/setup'

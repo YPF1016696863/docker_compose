@@ -1,0 +1,55 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: server-deployment
+  labels:
+    app: server
+  namespace: datavis
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: server
+  template:
+    metadata:
+      labels:
+        app: server
+    spec:
+      volumes:
+      - name: uploads-volume
+        persistentVolumeClaim:
+          claimName: uploads-volume-claim
+      restartPolicy: Always
+      containers:
+      - name: server
+        image: guwenqing/datavis-backend:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 5000
+        volumeMounts:
+        - mountPath: /app/uploads
+          name: uploads-volume
+        env:
+        - name: REDASH_REDIS_URL
+          value: "redis://redis:6379/0"
+        - name: REDASH_DATABASE_URL
+          value: "postgresql://postgres@postgres/postgres"
+        - name: REDASH_WEB_WORKERS
+          value: "2"
+        args: ["server"]
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: server
+  labels:
+    app: server
+  namespace: datavis
+spec:
+  ports:
+  - port: 5000
+    targetPort: 5000
+    nodePort: 30050
+  selector:
+    app: server
+  type: NodePort

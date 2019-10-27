@@ -25,12 +25,13 @@ services:
     <<: *datavis-backend
     command: server
     ports:
-      - "5000:5000"
+      - "30050:5000"
     volumes:
       - /opt/redash/uploads:/app/uploads
     environment:
       REDASH_REDIS_URL: "redis://redis:6379/0"
       REDASH_DATABASE_URL: "postgresql://postgres@postgres/postgres"
+      REDASH_WEB_WORKERS: 2
   worker:
     <<: *datavis-backend
     command: scheduler
@@ -52,9 +53,9 @@ services:
     image: guwenqing/datavis-dashboard:latest
     restart: always
     ports:
-      - "8091:80"
+      - "30091:80"
   frontend-login:
     image: guwenqing/datavis-login:latest
     restart: always
     ports:
-      - "8092:80"
+      - "30092:80"
