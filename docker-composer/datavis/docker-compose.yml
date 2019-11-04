@@ -11,12 +11,8 @@ services:
   redis:
     image: redis:3-alpine
     restart: unless-stopped
-    ports:
-      - "6379:6379"
   postgres:
     image: postgres:9.5-alpine
-    ports:
-      - "5432:5432"
     volumes:
       - /opt/redash/postgres_data:/var/lib/postgresql/data
 #    command: "postgres -c fsync=off -c full_page_writes=off -c synchronous_commit=OFF"
