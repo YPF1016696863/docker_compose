@@ -11,12 +11,18 @@ services:
   redis:
     image: redis:3-alpine
     restart: unless-stopped
+# Uncomment below if you want to do local debug
+#    ports:
+#      - "6379:6379"
   postgres:
     image: postgres:9.5-alpine
     volumes:
       - /opt/redash/postgres_data:/var/lib/postgresql/data
 #    command: "postgres -c fsync=off -c full_page_writes=off -c synchronous_commit=OFF"
     restart: always
+# Uncomment below if you want to do local debug
+#    ports:
+#      - "5432:5432"
   server:
     <<: *datavis-backend
     command: server
@@ -50,8 +56,16 @@ services:
     restart: always
     ports:
       - "30091:80"
+    environment:
+      PORT_BACKEND_SERVER: 30050
+      PORT_FRONTEND_DASHBOARD: 30091
+      PORT_FRONTEND_LOGIN: 30092
   frontend-login:
     image: guwenqing/datavis-login:latest
     restart: always
     ports:
       - "30092:80"
+    environment:
+      PORT_BACKEND_SERVER: 30050
+      PORT_FRONTEND_DASHBOARD: 30091
+      PORT_FRONTEND_LOGIN: 30092
