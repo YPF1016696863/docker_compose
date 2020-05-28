@@ -4,9 +4,9 @@ curl -i -X POST \
    -H "Content-Type:application/json" \
    -d \
 '{
-  "email":"test@gmail.com",
-  "password":"fcfcfc",
-  "org_name":"fc",
-  "name":"Test Account"
+  "email":"superadmin",
+  "password":"Abcd1234",
+  "org_name":"Default",
+  "name":"Super Admin"
 }' \
  'http://localhost:30050/api/setup'

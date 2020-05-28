@@ -1,62 +1,50 @@
-# This configuration file is for the **development** setup.
-# For a production example please refer to setup/docker-compose.yml.
 version: '3.7'
-x-datavis-backend: &datavis-backend
+x-datavis-backend: &datavis-backend-prod
   image: guwenqing/datavis-backend:latest
   depends_on:
-    - postgres
-    - redis
+    - postgres-prod
+    - redis-prod
   restart: always
 services:
-  redis:
+  redis-prod:
     image: redis:3-alpine
     restart: unless-stopped
-# Uncomment below if you want to do local debug
-#    ports:
-#      - "6379:6379"
-  postgres:
+  postgres-prod:
     image: postgres:9.5-alpine
     volumes:
-      - /opt/redash/postgres_data:/var/lib/postgresql/data
-#    command: "postgres -c fsync=off -c full_page_writes=off -c synchronous_commit=OFF"
+      - /opt/datavis/postgres_data:/var/lib/postgresql/data
     restart: always
-# Uncomment below if you want to do local debug
-#    ports:
-#      - "5432:5432"
-  server:
-    <<: *datavis-backend
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: "trust"
+  server-prod:
+    <<: *datavis-backend-prod
     command: server
     ports:
-      - "30050:5000"
+      - "30056:5000"
     volumes:
-      - /opt/redash/uploads:/app/uploads
+      - /opt/datavis/uploads:/app/uploads
     environment:
-      REDASH_REDIS_URL: "redis://redis:6379/0"
-      REDASH_DATABASE_URL: "postgresql://postgres@postgres/postgres"
+      REDASH_REDIS_URL: "redis://redis-prod:6379/0"
+      REDASH_DATABASE_URL: "postgresql://postgres@postgres-prod/postgres"
       REDASH_WEB_WORKERS: 2
-  worker:
-    <<: *datavis-backend
+  worker-prod:
+    <<: *datavis-backend-prod
     command: scheduler
     volumes:
-      - /opt/redash/uploads:/app/uploads
+      - /opt/datavis/uploads:/app/uploads
     environment:
-      REDASH_REDIS_URL: "redis://redis:6379/0"
-      REDASH_DATABASE_URL: "postgresql://postgres@postgres/postgres"
+      REDASH_REDIS_URL: "redis://redis-prod:6379/0"
+      REDASH_DATABASE_URL: "postgresql://postgres@postgres-prod/postgres"
       QUEUES: "queries,scheduled_queries,celery,schemas"
       WORKERS_COUNT: 2
-  mysql-demo:
-    image: mysql:5.6
-    volumes:
-      - /opt/redash/mysql_data:/var/lib/mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: "rukshani"
-    restart: always
-  frontend-dashboard:
+  frontend-dashboard-prod:
     image: guwenqing/datavis-dashboard:latest
     restart: always
     ports:
-      - "30091:80"
+      - "30096:80"
     environment:
-      PORT_BACKEND_SERVER: 30050
-      PORT_FRONTEND_DASHBOARD: 30091
-      PORT_FRONTEND_LOGIN: 30092
+      PORT_BACKEND_SERVER: 30056
+      PORT_FRONTEND_DASHBOARD: 30096
+networks:
+  default:
+    name: datavis-network-prod
