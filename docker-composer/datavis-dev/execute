@@ -1,202 +1,0 @@
-Removing network datavis-network-dev
-Network datavis-network-dev not found.
-Pulling redis              ... 
-Pulling postgres           ... 
-Pulling server             ... 
-Pulling worker             ... 
-Pulling frontend-dashboard ... 
-[2A[2KPulling worker             ... pulling from guwenqing/datavis-ba...[2B[2A[2KPulling worker             ... digest: sha256:f612b6166b38d32873...[2B[2A[2KPulling worker             ... status: image is up to date for g...[2B[2A[2KPulling worker             ... [32mdone[0m[2B[4A[2KPulling postgres           ... pulling from library/postgres[4B[3A[2KPulling server             ... pulling from guwenqing/datavis-ba...[3B[3A[2KPulling server             ... digest: sha256:f612b6166b38d32873...[3B[3A[2KPulling server             ... status: image is up to date for g...[3B[3A[2KPulling server             ... [32mdone[0m[3B[5A[2KPulling redis              ... pulling from library/redis[5B[1A[2KPulling frontend-dashboard ... pulling from guwenqing/datavis-da...[1B[1A[2KPulling frontend-dashboard ... already exists[1B[1A[2KPulling frontend-dashboard ... already exists[1B[1A[2KPulling frontend-dashboard ... already exists[1B[1A[2KPulling frontend-dashboard ... already exists[1B[1A[2KPulling frontend-dashboard ... already exists[1B[1A[2KPulling frontend-dashboard ... already exists[1B[1A[2KPulling frontend-dashboard ... already exists[1B[1A[2KPulling frontend-dashboard ... pulling fs layer[1B[4A[2KPulling postgres           ... digest: sha256:fe92efd46a41637ddb...[4B[4A[2KPulling postgres           ... status: image is up to date for p...[4B[4A[2KPulling postgres           ... [32mdone[0m[4B[5A[2KPulling redis              ... digest: sha256:e9083e10f5f81d350a...[5B[5A[2KPulling redis              ... status: image is up to date for r...[5B[5A[2KPulling redis              ... [32mdone[0m[5B[1A[2KPulling frontend-dashboard ... downloading (100.0%)[1B[1A[2KPulling frontend-dashboard ... download complete[1B[1A[2KPulling frontend-dashboard ... extracting (100.0%)[1B[1A[2KPulling frontend-dashboard ... extracting (100.0%)[1B[1A[2KPulling frontend-dashboard ... pull complete[1B[1A[2KPulling frontend-dashboard ... digest: sha256:96b1a3bc48de82a0d4...[1B[1A[2KPulling frontend-dashboard ... status: downloaded newer image fo...[1B[1A[2KPulling frontend-dashboard ... [32mdone[0m[1BCreating network "datavis-network-dev" with the default driver
-Creating datavis-dev_frontend-dashboard_1_1cbfbb24e138 ... 
-Creating datavis-dev_postgres_1_fd6bf5579610           ... 
-Creating datavis-dev_redis_1_6125c7249891              ... 
-[1A[2KCreating datavis-dev_redis_1_6125c7249891              ... [32mdone[0m[1B[3A[2KCreating datavis-dev_frontend-dashboard_1_1cbfbb24e138 ... [32mdone[0m[3B[2A[2KCreating datavis-dev_postgres_1_fd6bf5579610           ... [32mdone[0m[2BCreating datavis-dev_worker_1_a51288d5a2fb             ... 
-Creating datavis-dev_server_1_d2a57ef7ab13             ... 
-[2A[2KCreating datavis-dev_worker_1_a51288d5a2fb             ... [32mdone[0m[2B[1A[2KCreating datavis-dev_server_1_d2a57ef7ab13             ... [32mdone[0m[1BAttaching to datavis-dev_redis_1_694c0d30558c, datavis-dev_frontend-dashboard_1_9d00550735f9, datavis-dev_postgres_1_a6c56873bb12, datavis-dev_worker_1_21f9a8959c54, datavis-dev_server_1_3e6382814400
-[33mfrontend-dashboard_1_9d00550735f9 |[0m set -e
-[33mfrontend-dashboard_1_9d00550735f9 |[0m set -o pipefail
-[33mfrontend-dashboard_1_9d00550735f9 |[0m 
-[33mfrontend-dashboard_1_9d00550735f9 |[0m DEFAULT_PORT_BACKEND_SERVER=30050
-[33mfrontend-dashboard_1_9d00550735f9 |[0m DEFAULT_PORT_FRONTEND_DASHBOARD=30091
-[33mfrontend-dashboard_1_9d00550735f9 |[0m 
-[33mfrontend-dashboard_1_9d00550735f9 |[0m PORT_BACKEND_SERVER=${PORT_BACKEND_SERVER:-${DEFAULT_PORT_BACKEND_SERVER}}
-[33mfrontend-dashboard_1_9d00550735f9 |[0m PORT_FRONTEND_DASHBOARD=${PORT_FRONTEND_DASHBOARD:-${DEFAULT_PORT_FRONTEND_DASHBOARD}}
-[33mfrontend-dashboard_1_9d00550735f9 |[0m 
-[33mfrontend-dashboard_1_9d00550735f9 |[0m cd /usr/share/nginx/html/static
-[33mfrontend-dashboard_1_9d00550735f9 |[0m 
-[33mfrontend-dashboard_1_9d00550735f9 |[0m TARGET_FILE="app.*.js"
-[33mfrontend-dashboard_1_9d00550735f9 |[0m 
-[33mfrontend-dashboard_1_9d00550735f9 |[0m cp app.template ${TARGET_FILE}
-[33mfrontend-dashboard_1_9d00550735f9 |[0m 
-[33mfrontend-dashboard_1_9d00550735f9 |[0m sed -i "s/:${DEFAULT_PORT_BACKEND_SERVER}/:${PORT_BACKEND_SERVER}/g" ${TARGET_FILE}
-[33mfrontend-dashboard_1_9d00550735f9 |[0m sed -i "s/:${DEFAULT_PORT_FRONTEND_DASHBOARD}/:${PORT_FRONTEND_DASHBOARD}/g" ${TARGET_FILE}
-[33mfrontend-dashboard_1_9d00550735f9 |[0m 
-[33mfrontend-dashboard_1_9d00550735f9 |[0m exec nginx -g 'daemon off;'
-[36mredis_1_694c0d30558c  |[0m 1:C 28 May 22:59:33.173 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
-[36mredis_1_694c0d30558c  |[0m                 _._                                                  
-[36mredis_1_694c0d30558c  |[0m            _.-``__ ''-._                                             
-[36mredis_1_694c0d30558c  |[0m       _.-``    `.  `_.  ''-._           Redis 3.2.12 (00000000/0) 64 bit
-[36mredis_1_694c0d30558c  |[0m   .-`` .-```.  ```\/    _.,_ ''-._                                   
-[36mredis_1_694c0d30558c  |[0m  (    '      ,       .-`  | `,    )     Running in standalone mode
-[36mredis_1_694c0d30558c  |[0m  |`-._`-...-` __...-.``-._|'` _.-'|     Port: 6379
-[36mredis_1_694c0d30558c  |[0m  |    `-._   `._    /     _.-'    |     PID: 1
-[36mredis_1_694c0d30558c  |[0m   `-._    `-._  `-./  _.-'    _.-'                                   
-[36mredis_1_694c0d30558c  |[0m  |`-._`-._    `-.__.-'    _.-'_.-'|                                  
-[36mredis_1_694c0d30558c  |[0m  |    `-._`-._        _.-'_.-'    |           http://redis.io        
-[36mredis_1_694c0d30558c  |[0m   `-._    `-._`-.__.-'_.-'    _.-'                                   
-[36mredis_1_694c0d30558c  |[0m  |`-._`-._    `-.__.-'    _.-'_.-'|                                  
-[36mredis_1_694c0d30558c  |[0m  |    `-._`-._        _.-'_.-'    |                                  
-[36mredis_1_694c0d30558c  |[0m   `-._    `-._`-.__.-'_.-'    _.-'                                   
-[36mredis_1_694c0d30558c  |[0m       `-._    `-.__.-'    _.-'                                       
-[36mredis_1_694c0d30558c  |[0m           `-._        _.-'                                           
-[36mredis_1_694c0d30558c  |[0m               `-.__.-'                                               
-[36mredis_1_694c0d30558c  |[0m 
-[36mredis_1_694c0d30558c  |[0m 1:M 28 May 22:59:33.175 # WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lower value of 128.
-[36mredis_1_694c0d30558c  |[0m 1:M 28 May 22:59:33.175 # Server started, Redis version 3.2.12
-[36mredis_1_694c0d30558c  |[0m 1:M 28 May 22:59:33.175 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
-[36mredis_1_694c0d30558c  |[0m 1:M 28 May 22:59:33.175 # WARNING you have Transparent Huge Pages (THP) support enabled in your kernel. This will create latency and memory usage issues with Redis. To fix this issue run the command 'echo never > /sys/kernel/mm/transparent_hugepage/enabled' as root, and add it to your /etc/rc.local in order to retain the setting after a reboot. Redis must be restarted after THP is disabled.
-[36mredis_1_694c0d30558c  |[0m 1:M 28 May 22:59:33.175 * The server is now ready to accept connections on port 6379
-[32mpostgres_1_a6c56873bb12 |[0m 
-[32mpostgres_1_a6c56873bb12 |[0m PostgreSQL Database directory appears to contain a database; Skipping initialization
-[32mpostgres_1_a6c56873bb12 |[0m 
-[32mpostgres_1_a6c56873bb12 |[0m LOG:  database system was shut down at 2020-05-28 22:09:36 UTC
-[32mpostgres_1_a6c56873bb12 |[0m LOG:  MultiXact member wraparound protections are now enabled
-[32mpostgres_1_a6c56873bb12 |[0m LOG:  database system is ready to accept connections
-[32mpostgres_1_a6c56873bb12 |[0m LOG:  autovacuum launcher started
-[35mworker_1_21f9a8959c54 |[0m Starting scheduler and 2 workers for queues: queries,scheduled_queries,celery,schemas...
-[35mworker_1_21f9a8959c54 |[0m [2020-05-28 22:59:36,289][PID:1][DEBUG][root] Creating Redis connection (redis://redis:6379/0)
-[35mworker_1_21f9a8959c54 |[0m [2020-05-28 22:59:36,400][PID:1][DEBUG][passlib.utils.compat] loaded lazy attr 'SafeConfigParser': <class ConfigParser.SafeConfigParser at 0x7fd6078f6360>
-[35mworker_1_21f9a8959c54 |[0m [2020-05-28 22:59:36,400][PID:1][DEBUG][passlib.utils.compat] loaded lazy attr 'NativeStringIO': <built-in function StringIO>
-[35mworker_1_21f9a8959c54 |[0m [2020-05-28 22:59:36,400][PID:1][DEBUG][passlib.utils.compat] loaded lazy attr 'BytesIO': <built-in function StringIO>
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:37 +0000] [1] [INFO] Starting gunicorn 19.7.1
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:37 +0000] [1] [INFO] Listening at: http://0.0.0.0:5000 (1)
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:37 +0000] [1] [INFO] Using worker: sync
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:37 +0000] [9] [INFO] Booting worker with pid: 9
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:37 +0000] [11] [INFO] Booting worker with pid: 11
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:37,948][PID:9][DEBUG][root] Creating Redis connection (redis://redis:6379/0)
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:37,958][PID:11][DEBUG][root] Creating Redis connection (redis://redis:6379/0)
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:38,350][PID:11][DEBUG][passlib.utils.compat] loaded lazy attr 'SafeConfigParser': <class ConfigParser.SafeConfigParser at 0x7fae4f981f30>
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:38,352][PID:9][DEBUG][passlib.utils.compat] loaded lazy attr 'SafeConfigParser': <class ConfigParser.SafeConfigParser at 0x7fae4f97ff30>
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:38,353][PID:11][DEBUG][passlib.utils.compat] loaded lazy attr 'NativeStringIO': <built-in function StringIO>
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:38,353][PID:9][DEBUG][passlib.utils.compat] loaded lazy attr 'NativeStringIO': <built-in function StringIO>
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:38,354][PID:11][DEBUG][passlib.utils.compat] loaded lazy attr 'BytesIO': <built-in function StringIO>
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:38,354][PID:9][DEBUG][passlib.utils.compat] loaded lazy attr 'BytesIO': <built-in function StringIO>
-[35mworker_1_21f9a8959c54 |[0m [2020-05-28 22:59:38,657][PID:1][INFO][MainProcess] Connected to redis://redis:6379/0
-[35mworker_1_21f9a8959c54 |[0m [2020-05-28 22:59:38,685][PID:1][INFO][MainProcess] mingle: searching for neighbors
-[35mworker_1_21f9a8959c54 |[0m [2020-05-28 22:59:39,799][PID:1][INFO][MainProcess] mingle: all alone
-[35mworker_1_21f9a8959c54 |[0m [2020-05-28 22:59:39,860][PID:1][INFO][MainProcess] celery@58b2041b9fdd ready.
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:42,228][PID:9][DEBUG][redash.query_runner] Registering DB2 (db2) query runner.
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:42,237][PID:9][DEBUG][redash.query_runner] Registering Elasticsearch (elasticsearch) query runner.
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:42,261][PID:9][DEBUG][redash.query_runner] Registering Excel (excel) query runner.
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:42,262][PID:9][DEBUG][redash.query_runner] Registering Excel Upload (excelupload) query runner.
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:42,265][PID:9][DEBUG][redash.query_runner] Registering Graphite (graphite) query runner.
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:42,294][PID:9][DEBUG][redash.query_runner] Registering Hive (hive) query runner.
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:42,303][PID:9][DEBUG][redash.query_runner] Registering Hive (HTTP) (hive_http) query runner.
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:42,308][PID:9][DEBUG][redash.query_runner] Registering InfluxDB (influxdb) query runner.
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:42,311][PID:9][DEBUG][redash.query_runner] Registering JIRA (JQL) (jirajql) query runner.
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:42,433][PID:9][DEBUG][redash.query_runner] Registering MongoDB (mongodb) query runner.
-[35mworker_1_21f9a8959c54 |[0m [2020-05-28 22:59:42,436][PID:10][INFO][Beat] beat: Starting...
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:42,440][PID:9][DEBUG][redash.query_runner] Registering Microsoft SQL Server (mssql) query runner.
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:42,452][PID:9][DEBUG][redash.query_runner] Registering MySQL Database (mysql) query runner.
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:42,454][PID:9][DEBUG][redash.query_runner] Registering Oslc (oslc) query runner.
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:42,456][PID:9][DEBUG][redash.query_runner] Registering PostgreSQL (pg) query runner.
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:42,458][PID:9][DEBUG][redash.query_runner] Registering Prometheus (prometheus) query runner.
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:42,462][PID:9][DEBUG][redash.query_runner] Registering Query Results (results) query runner.
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:42,465][PID:9][DEBUG][redash.query_runner] Registering Sqlite (sqlite) query runner.
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:42,466][PID:9][DEBUG][redash.query_runner] Registering Url (url) query runner.
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:42,468][PID:9][DEBUG][redash.query_runner] Registering Redis29 (redis29) query runner.
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:42,470][PID:9][DEBUG][redash.destinations] Registering Email (email) destinations.
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:42,471][PID:9][DEBUG][redash.destinations] Registering Webhook (webhook) destinations.
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:42,541][PID:11][DEBUG][redash.query_runner] Registering DB2 (db2) query runner.
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:42,542][PID:11][DEBUG][redash.query_runner] Registering Elasticsearch (elasticsearch) query runner.
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:42,549][PID:11][DEBUG][redash.query_runner] Registering Excel (excel) query runner.
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:42,549][PID:11][DEBUG][redash.query_runner] Registering Excel Upload (excelupload) query runner.
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:42,549][PID:11][DEBUG][redash.query_runner] Registering Graphite (graphite) query runner.
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:42,560][PID:11][DEBUG][redash.query_runner] Registering Hive (hive) query runner.
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:42,560][PID:11][DEBUG][redash.query_runner] Registering Hive (HTTP) (hive_http) query runner.
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:42,562][PID:11][DEBUG][redash.query_runner] Registering InfluxDB (influxdb) query runner.
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:42,562][PID:11][DEBUG][redash.query_runner] Registering JIRA (JQL) (jirajql) query runner.
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:42,602][PID:11][DEBUG][redash.query_runner] Registering MongoDB (mongodb) query runner.
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:42,605][PID:11][DEBUG][redash.query_runner] Registering Microsoft SQL Server (mssql) query runner.
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:42,607][PID:11][DEBUG][redash.query_runner] Registering MySQL Database (mysql) query runner.
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:42,608][PID:11][DEBUG][redash.query_runner] Registering Oslc (oslc) query runner.
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:42,608][PID:11][DEBUG][redash.query_runner] Registering PostgreSQL (pg) query runner.
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:42,609][PID:11][DEBUG][redash.query_runner] Registering Prometheus (prometheus) query runner.
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:42,611][PID:11][DEBUG][redash.query_runner] Registering Query Results (results) query runner.
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:42,611][PID:11][DEBUG][redash.query_runner] Registering Sqlite (sqlite) query runner.
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:42,611][PID:11][DEBUG][redash.query_runner] Registering Url (url) query runner.
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:42,612][PID:11][DEBUG][redash.query_runner] Registering Redis29 (redis29) query runner.
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:42,613][PID:11][DEBUG][redash.destinations] Registering Email (email) destinations.
-[31mserver_1_3e6382814400 |[0m [2020-05-28 22:59:42,613][PID:11][DEBUG][redash.destinations] Registering Webhook (webhook) destinations.
-[33mfrontend-dashboard_1_9d00550735f9 |[0m 192.168.240.1 - - [28/May/2020:23:00:06 +0000] "GET / HTTP/1.0" 200 1462 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36" "90.227.146.185"
-[33mfrontend-dashboard_1_9d00550735f9 |[0m 192.168.240.1 - - [28/May/2020:23:00:06 +0000] "GET /static/vendors~app.cde61bf64ac41a43e23c.css HTTP/1.0" 200 1732755 "http://datavis-dev.chinambse.com/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36" "90.227.146.185"
-[33mfrontend-dashboard_1_9d00550735f9 |[0m 192.168.240.1 - - [28/May/2020:23:00:06 +0000] "GET /static/vendors~app.cde61bf64ac41a43e23c.js HTTP/1.0" 200 6773939 "http://datavis-dev.chinambse.com/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36" "90.227.146.185"
-[33mfrontend-dashboard_1_9d00550735f9 |[0m 192.168.240.1 - - [28/May/2020:23:00:06 +0000] "GET /static/app.36db9414ccb43253af0e.css HTTP/1.0" 200 825854 "http://datavis-dev.chinambse.com/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36" "90.227.146.185"
-[33mfrontend-dashboard_1_9d00550735f9 |[0m 192.168.240.1 - - [28/May/2020:23:00:07 +0000] "GET /static/app.36db9414ccb43253af0e.js HTTP/1.0" 200 1660540 "http://datavis-dev.chinambse.com/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36" "90.227.146.185"
-[33mfrontend-dashboard_1_9d00550735f9 |[0m 192.168.240.1 - - [28/May/2020:23:00:09 +0000] "GET /static/fonts/Alibaba-PuHuiTi-Regular.fea46b8.otf HTTP/1.0" 200 6917288 "http://datavis-dev.chinambse.com/static/app.36db9414ccb43253af0e.css" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36" "90.227.146.185"
-[33mfrontend-dashboard_1_9d00550735f9 |[0m 192.168.240.1 - - [28/May/2020:23:00:09 +0000] "GET /static/app.36db9414ccb43253af0e.css.map HTTP/1.0" 200 1000300 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36" "90.227.146.185"
-[33mfrontend-dashboard_1_9d00550735f9 |[0m 192.168.240.1 - - [28/May/2020:23:00:10 +0000] "GET /static/vendors~app.cde61bf64ac41a43e23c.css.map HTTP/1.0" 200 2112755 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36" "90.227.146.185"
-[33mfrontend-dashboard_1_9d00550735f9 |[0m 192.168.240.1 - - [28/May/2020:23:00:11 +0000] "GET /static/app.36db9414ccb43253af0e.js.map HTTP/1.0" 200 3279936 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36" "90.227.146.185"
-[33mfrontend-dashboard_1_9d00550735f9 |[0m 192.168.240.1 - - [28/May/2020:23:00:11 +0000] "GET /static/images/brandImg.png HTTP/1.0" 200 18006 "http://datavis-dev.chinambse.com/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36" "90.227.146.185"
-[33mfrontend-dashboard_1_9d00550735f9 |[0m 192.168.240.1 - - [28/May/2020:23:00:11 +0000] "GET /static/vendors~app.cde61bf64ac41a43e23c.js.map HTTP/1.0" 200 28257048 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36" "90.227.146.185"
-[33mfrontend-dashboard_1_9d00550735f9 |[0m 192.168.240.1 - - [28/May/2020:23:00:11 +0000] "GET /login HTTP/1.0" 200 1462 "http://datavis-dev.chinambse.com/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36" "90.227.146.185"
-[33mfrontend-dashboard_1_9d00550735f9 |[0m 192.168.240.1 - - [28/May/2020:23:00:12 +0000] "GET /login HTTP/1.0" 200 1462 "http://datavis-dev.chinambse.com/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36" "90.227.146.185"
-[33mfrontend-dashboard_1_9d00550735f9 |[0m 192.168.240.1 - - [28/May/2020:23:00:12 +0000] "GET /static/app.36db9414ccb43253af0e.js HTTP/1.0" 304 0 "http://datavis-dev.chinambse.com/login" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36" "90.227.146.185"
-[35mworker_1_21f9a8959c54 |[0m [2020-05-28 23:00:12,489][PID:10][INFO][Beat] Scheduler: Sending due task refresh_queries (redash.tasks.refresh_queries)
-[35mworker_1_21f9a8959c54 |[0m [2020-05-28 23:00:12,500][PID:1][INFO][MainProcess] Received task: redash.tasks.refresh_queries[95ae4fee-bc36-4866-920e-72ec3b3685e9]  
-[35mworker_1_21f9a8959c54 |[0m [2020-05-28 23:00:12,502][PID:12][INFO][ForkPoolWorker-3] task_name=redash.tasks.refresh_queries task_id=95ae4fee-bc36-4866-920e-72ec3b3685e9 Refreshing queries...
-[35mworker_1_21f9a8959c54 |[0m [2020-05-28 23:00:12,641][PID:12][INFO][ForkPoolWorker-3] task_name=redash.tasks.refresh_queries task_id=95ae4fee-bc36-4866-920e-72ec3b3685e9 Done refreshing queries. Found 0 outdated queries: []
-[35mworker_1_21f9a8959c54 |[0m [2020-05-28 23:00:12,644][PID:12][INFO][ForkPoolWorker-3] Task redash.tasks.refresh_queries[95ae4fee-bc36-4866-920e-72ec3b3685e9] succeeded in 0.141873093904s: None
-[33mfrontend-dashboard_1_9d00550735f9 |[0m 192.168.240.1 - - [28/May/2020:23:00:13 +0000] "GET /static/fonts/Alibaba-PuHuiTi-Regular.fea46b8.otf HTTP/1.0" 206 1 "http://datavis-dev.chinambse.com/static/app.36db9414ccb43253af0e.css" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36" "90.227.146.185"
-[33mfrontend-dashboard_1_9d00550735f9 |[0m 192.168.240.1 - - [28/May/2020:23:00:13 +0000] "GET /static/images/resources.png HTTP/1.0" 200 409612 "http://datavis-dev.chinambse.com/static/app.36db9414ccb43253af0e.css" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36" "90.227.146.185"
-[33mfrontend-dashboard_1_9d00550735f9 |[0m 192.168.240.1 - - [28/May/2020:23:00:13 +0000] "GET /static/images/loading.gif HTTP/1.0" 200 26822 "http://datavis-dev.chinambse.com/login" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36" "90.227.146.185"
-[33mfrontend-dashboard_1_9d00550735f9 |[0m 192.168.240.1 - - [28/May/2020:23:00:13 +0000] "GET /static/fonts/fontawesome-webfont.af7ae50.woff2 HTTP/1.0" 200 77160 "http://datavis-dev.chinambse.com/static/app.36db9414ccb43253af0e.css" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36" "90.227.146.185"
-[33mfrontend-dashboard_1_9d00550735f9 |[0m 192.168.240.1 - - [28/May/2020:23:00:13 +0000] "GET /static/fonts/Alibaba-PuHuiTi-Regular.fea46b8.otf HTTP/1.0" 206 3131088 "http://datavis-dev.chinambse.com/static/app.36db9414ccb43253af0e.css" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36" "90.227.146.185"
-[31mserver_1_3e6382814400 |[0m [2020-05-28 23:00:28,104][PID:9][DEBUG][passlib.registry] registered 'sha512_crypt' handler: <class 'passlib.handlers.sha2_crypt.sha512_crypt'>
-[31mserver_1_3e6382814400 |[0m [2020-05-28 23:00:28,105][PID:9][DEBUG][passlib.registry] registered 'sha256_crypt' handler: <class 'passlib.handlers.sha2_crypt.sha256_crypt'>
-[33mfrontend-dashboard_1_9d00550735f9 |[0m 192.168.240.1 - - [28/May/2020:23:00:28 +0000] "GET /static/app.36db9414ccb43253af0e.js HTTP/1.0" 304 0 "http://datavis-dev.chinambse.com/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36" "90.227.146.185"
-[31mserver_1_3e6382814400 |[0m [2020-05-28 23:00:29,540][PID:11][DEBUG][root] Current organization: fc (1) (slug: default)
-[31mserver_1_3e6382814400 |[0m [2020-05-28 23:00:29,823][PID:9][DEBUG][root] Current organization: fc (1) (slug: default)
-[33mfrontend-dashboard_1_9d00550735f9 |[0m 192.168.240.1 - - [28/May/2020:23:00:29 +0000] "GET /static/fonts/icons.0ab5415.woff2 HTTP/1.0" 200 40148 "http://datavis-dev.chinambse.com/static/vendors~app.cde61bf64ac41a43e23c.css" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36" "90.227.146.185"
-[33mfrontend-dashboard_1_9d00550735f9 |[0m 192.168.240.1 - - [28/May/2020:23:00:30 +0000] "GET /static/images/illustrations/dashboard.png HTTP/1.0" 200 79849 "http://datavis-dev.chinambse.com/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36" "90.227.146.185"
-[31mserver_1_3e6382814400 |[0m [2020-05-28 23:00:33,430][PID:11][DEBUG][root] Current organization: fc (1) (slug: default)
-[31mserver_1_3e6382814400 |[0m [2020-05-28 23:00:33,702][PID:11][DEBUG][root] Current organization: fc (1) (slug: default)
-[31mserver_1_3e6382814400 |[0m [2020-05-28 23:00:33,889][PID:9][DEBUG][root] Current organization: fc (1) (slug: default)
-[31mserver_1_3e6382814400 |[0m [2020-05-28 23:00:33,894][PID:11][DEBUG][root] Current organization: fc (1) (slug: default)
-[33mfrontend-dashboard_1_9d00550735f9 |[0m 192.168.240.1 - - [28/May/2020:23:00:35 +0000] "GET /static/images/db-logos/redis29.png HTTP/1.0" 200 9260 "http://datavis-dev.chinambse.com/data_sources" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36" "90.227.146.185"
-[33mfrontend-dashboard_1_9d00550735f9 |[0m 192.168.240.1 - - [28/May/2020:23:00:35 +0000] "GET /static/images/db-logos/excel.png HTTP/1.0" 200 6662 "http://datavis-dev.chinambse.com/data_sources" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36" "90.227.146.185"
-[33mfrontend-dashboard_1_9d00550735f9 |[0m 192.168.240.1 - - [28/May/2020:23:00:35 +0000] "GET /static/images/db-logos/results.png HTTP/1.0" 200 13095 "http://datavis-dev.chinambse.com/data_sources" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36" "90.227.146.185"
-[33mfrontend-dashboard_1_9d00550735f9 |[0m 192.168.240.1 - - [28/May/2020:23:00:35 +0000] "GET /static/images/db-logos/url.png HTTP/1.0" 200 8559 "http://datavis-dev.chinambse.com/data_sources" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36" "90.227.146.185"
-[33mfrontend-dashboard_1_9d00550735f9 |[0m 192.168.240.1 - - [28/May/2020:23:00:35 +0000] "GET /static/images/db-logos/excelupload.png HTTP/1.0" 200 17707 "http://datavis-dev.chinambse.com/data_sources" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36" "90.227.146.185"
-[33mfrontend-dashboard_1_9d00550735f9 |[0m 192.168.240.1 - - [28/May/2020:23:00:35 +0000] "GET /static/images/db-logos/mysql.png HTTP/1.0" 200 12563 "http://datavis-dev.chinambse.com/data_sources" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36" "90.227.146.185"
-[33mfrontend-dashboard_1_9d00550735f9 |[0m 192.168.240.1 - - [28/May/2020:23:00:35 +0000] "GET /static/images/db-logos/mongodb.png HTTP/1.0" 200 9299 "http://datavis-dev.chinambse.com/data_sources" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36" "90.227.146.185"
-[33mfrontend-dashboard_1_9d00550735f9 |[0m 192.168.240.1 - - [28/May/2020:23:00:35 +0000] "GET /static/images/db-logos/oslc.png HTTP/1.0" 200 13320 "http://datavis-dev.chinambse.com/data_sources" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36" "90.227.146.185"
-[33mfrontend-dashboard_1_9d00550735f9 |[0m 192.168.240.1 - - [28/May/2020:23:00:35 +0000] "GET /static/images/db-logos/sqlite.png HTTP/1.0" 200 14050 "http://datavis-dev.chinambse.com/data_sources" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36" "90.227.146.185"
-[33mfrontend-dashboard_1_9d00550735f9 |[0m 192.168.240.1 - - [28/May/2020:23:00:35 +0000] "GET /static/images/db-logos/mssql.png HTTP/1.0" 200 23693 "http://datavis-dev.chinambse.com/data_sources" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36" "90.227.146.185"
-[31mserver_1_3e6382814400 |[0m [2020-05-28 23:00:36,459][PID:11][DEBUG][root] Current organization: fc (1) (slug: default)
-[31mserver_1_3e6382814400 |[0m [2020-05-28 23:00:36,738][PID:9][DEBUG][root] Current organization: fc (1) (slug: default)
-[31mserver_1_3e6382814400 |[0m [2020-05-28 23:00:39,730][PID:11][DEBUG][root] Current organization: fc (1) (slug: default)
-[31mserver_1_3e6382814400 |[0m [2020-05-28 23:00:39,970][PID:11][DEBUG][root] Current organization: fc (1) (slug: default)
-[33mfrontend-dashboard_1_9d00550735f9 |[0m 192.168.240.1 - - [28/May/2020:23:00:39 +0000] "GET /static/images/emptyChart.png HTTP/1.0" 200 2060 "http://datavis-dev.chinambse.com/charts" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36" "90.227.146.185"
-[31mserver_1_3e6382814400 |[0m [2020-05-28 23:00:42,331][PID:11][DEBUG][root] Current organization: fc (1) (slug: default)
-[35mworker_1_21f9a8959c54 |[0m [2020-05-28 23:00:42,476][PID:10][INFO][Beat] Scheduler: Sending due task sync_user_details (redash.tasks.sync_user_details)
-[35mworker_1_21f9a8959c54 |[0m [2020-05-28 23:00:42,482][PID:10][INFO][Beat] Scheduler: Sending due task refresh_queries (redash.tasks.refresh_queries)
-[35mworker_1_21f9a8959c54 |[0m [2020-05-28 23:00:42,484][PID:1][INFO][MainProcess] Received task: redash.tasks.sync_user_details[9c529385-5c8a-42ba-a327-7eb5f43c9098]   expires:[2020-05-28 23:01:27.477460+00:00]
-[35mworker_1_21f9a8959c54 |[0m [2020-05-28 23:00:42,486][PID:1][INFO][MainProcess] Received task: redash.tasks.refresh_queries[3f790601-c467-4ddf-b5d4-41e24bc89328]  
-[35mworker_1_21f9a8959c54 |[0m [2020-05-28 23:00:42,491][PID:11][INFO][ForkPoolWorker-2] task_name=redash.tasks.refresh_queries task_id=3f790601-c467-4ddf-b5d4-41e24bc89328 Refreshing queries...
-[35mworker_1_21f9a8959c54 |[0m [2020-05-28 23:00:42,500][PID:12][INFO][ForkPoolWorker-3] Task redash.tasks.sync_user_details[9c529385-5c8a-42ba-a327-7eb5f43c9098] succeeded in 0.0134574989788s: None
-[31mserver_1_3e6382814400 |[0m [2020-05-28 23:00:42,587][PID:11][DEBUG][root] Current organization: fc (1) (slug: default)
-[35mworker_1_21f9a8959c54 |[0m [2020-05-28 23:00:42,611][PID:11][INFO][ForkPoolWorker-2] task_name=redash.tasks.refresh_queries task_id=3f790601-c467-4ddf-b5d4-41e24bc89328 Done refreshing queries. Found 0 outdated queries: []
-[35mworker_1_21f9a8959c54 |[0m [2020-05-28 23:00:42,613][PID:11][INFO][ForkPoolWorker-2] Task redash.tasks.refresh_queries[3f790601-c467-4ddf-b5d4-41e24bc89328] succeeded in 0.122680545901s: None
-[35mworker_1_21f9a8959c54 |[0m [2020-05-28 23:01:12,502][PID:10][INFO][Beat] Scheduler: Sending due task refresh_queries (redash.tasks.refresh_queries)
-[35mworker_1_21f9a8959c54 |[0m [2020-05-28 23:01:12,505][PID:1][INFO][MainProcess] Received task: redash.tasks.refresh_queries[6fd8f29a-22e8-44cd-a173-59fa1ac22f38]  
-[35mworker_1_21f9a8959c54 |[0m [2020-05-28 23:01:12,506][PID:12][INFO][ForkPoolWorker-3] task_name=redash.tasks.refresh_queries task_id=6fd8f29a-22e8-44cd-a173-59fa1ac22f38 Refreshing queries...
-[35mworker_1_21f9a8959c54 |[0m [2020-05-28 23:01:12,512][PID:12][INFO][ForkPoolWorker-3] task_name=redash.tasks.refresh_queries task_id=6fd8f29a-22e8-44cd-a173-59fa1ac22f38 Done refreshing queries. Found 0 outdated queries: []
-[35mworker_1_21f9a8959c54 |[0m [2020-05-28 23:01:12,514][PID:12][INFO][ForkPoolWorker-3] Task redash.tasks.refresh_queries[6fd8f29a-22e8-44cd-a173-59fa1ac22f38] succeeded in 0.00816491898149s: None
-[35mworker_1_21f9a8959c54 |[0m [2020-05-28 23:01:42,491][PID:10][INFO][Beat] Scheduler: Sending due task sync_user_details (redash.tasks.sync_user_details)
-[35mworker_1_21f9a8959c54 |[0m [2020-05-28 23:01:42,494][PID:1][INFO][MainProcess] Received task: redash.tasks.sync_user_details[46c740b8-6e32-4f13-8885-0a9ecbbf0232]   expires:[2020-05-28 23:02:27.492452+00:00]
-[35mworker_1_21f9a8959c54 |[0m [2020-05-28 23:01:42,502][PID:10][INFO][Beat] Scheduler: Sending due task refresh_queries (redash.tasks.refresh_queries)
-[35mworker_1_21f9a8959c54 |[0m [2020-05-28 23:01:42,507][PID:12][INFO][ForkPoolWorker-3] Task redash.tasks.sync_user_details[46c740b8-6e32-4f13-8885-0a9ecbbf0232] succeeded in 0.00994413509034s: None
-[35mworker_1_21f9a8959c54 |[0m [2020-05-28 23:01:42,507][PID:1][INFO][MainProcess] Received task: redash.tasks.refresh_queries[6828df52-d3b1-4e48-a20e-48e8a8c8ed39]  
-[35mworker_1_21f9a8959c54 |[0m [2020-05-28 23:01:42,508][PID:12][INFO][ForkPoolWorker-3] task_name=redash.tasks.refresh_queries task_id=6828df52-d3b1-4e48-a20e-48e8a8c8ed39 Refreshing queries...
-[35mworker_1_21f9a8959c54 |[0m [2020-05-28 23:01:42,514][PID:12][INFO][ForkPoolWorker-3] task_name=redash.tasks.refresh_queries task_id=6828df52-d3b1-4e48-a20e-48e8a8c8ed39 Done refreshing queries. Found 0 outdated queries: []
-[35mworker_1_21f9a8959c54 |[0m [2020-05-28 23:01:42,516][PID:12][INFO][ForkPoolWorker-3] Task redash.tasks.refresh_queries[6828df52-d3b1-4e48-a20e-48e8a8c8ed39] succeeded in 0.00747164594941s: None

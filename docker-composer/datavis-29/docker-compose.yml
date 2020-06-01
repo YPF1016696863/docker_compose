@@ -1,0 +1,50 @@
+version: '3.7'
+x-datavis-backend: &datavis-backend
+  image: guwenqing/datavis-backend:latest
+  depends_on:
+    - postgres
+    - redis
+  restart: always
+services:
+  redis:
+    image: redis:3-alpine
+    restart: unless-stopped
+  postgres:
+    image: postgres:9.5-alpine
+    volumes:
+      - /opt/datavis/postgres_data:/var/lib/postgresql/data
+    restart: always
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: "trust"
+  server:
+    <<: *datavis-backend
+    command: server
+    ports:
+      - "30099:5000"
+    volumes:
+      - /opt/datavis/uploads:/app/uploads
+    environment:
+      REDASH_REDIS_URL: "redis://redis:6379/0"
+      REDASH_DATABASE_URL: "postgresql://postgres@postgres/postgres"
+      REDASH_WEB_WORKERS: 2
+  worker:
+    <<: *datavis-backend
+    command: scheduler
+    volumes:
+      - /opt/datavis/uploads:/app/uploads
+    environment:
+      REDASH_REDIS_URL: "redis://redis:6379/0"
+      REDASH_DATABASE_URL: "postgresql://postgres@postgres/postgres"
+      QUEUES: "queries,scheduled_queries,celery,schemas"
+      WORKERS_COUNT: 2
+  frontend-dashboard:
+    image: guwenqing/datavis-dashboard:latest
+    restart: always
+    ports:
+      - "30091:80"
+    environment:
+      PORT_BACKEND_SERVER: 30099
+      PORT_FRONTEND_DASHBOARD: 30091
+networks:
+  default:
+    name: datavis-network-29
