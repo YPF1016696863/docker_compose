@@ -9,4 +9,4 @@ curl -i -X POST \
   "org_name":"Default",
   "name":"Super Admin"
 }' \
- 'http://localhost:30050/api/setup'
+ 'http://192.168.99.100:30050/api/setup'

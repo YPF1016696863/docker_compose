@@ -1,0 +1,948 @@
+Attaching to datavis-dev_frontend-dashboard_1, datavis-dev_redis_1, datavis-dev_postgres_1, datavis-dev_worker_1, datavis-dev_server_1
+[36mfrontend-dashboard_1  |[0m set -e
+[33mredis_1               |[0m 1:C 24 Jul 13:31:05.470 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+[36mfrontend-dashboard_1  |[0m set -o pipefail
+[33mredis_1               |[0m                 _._                                                  
+[33mredis_1               |[0m            _.-``__ ''-._                                             
+[33mredis_1               |[0m       _.-``    `.  `_.  ''-._           Redis 3.2.12 (00000000/0) 64 bit
+[33mredis_1               |[0m   .-`` .-```.  ```\/    _.,_ ''-._                                   
+[33mredis_1               |[0m  (    '      ,       .-`  | `,    )     Running in standalone mode
+[33mredis_1               |[0m  |`-._`-...-` __...-.``-._|'` _.-'|     Port: 6379
+[33mredis_1               |[0m  |    `-._   `._    /     _.-'    |     PID: 1
+[33mredis_1               |[0m   `-._    `-._  `-./  _.-'    _.-'                                   
+[33mredis_1               |[0m  |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+[33mredis_1               |[0m  |    `-._`-._        _.-'_.-'    |           http://redis.io        
+[33mredis_1               |[0m   `-._    `-._`-.__.-'_.-'    _.-'                                   
+[33mredis_1               |[0m  |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+[33mredis_1               |[0m  |    `-._`-._        _.-'_.-'    |                                  
+[33mredis_1               |[0m   `-._    `-._`-.__.-'_.-'    _.-'                                   
+[33mredis_1               |[0m       `-._    `-.__.-'    _.-'                                       
+[33mredis_1               |[0m           `-._        _.-'                                           
+[33mredis_1               |[0m               `-.__.-'                                               
+[33mredis_1               |[0m 
+[36mfrontend-dashboard_1  |[0m 
+[36mfrontend-dashboard_1  |[0m DEFAULT_PORT_BACKEND_SERVER=30050
+[36mfrontend-dashboard_1  |[0m DEFAULT_PORT_FRONTEND_DASHBOARD=30091
+[32mpostgres_1            |[0m 
+[32mpostgres_1            |[0m PostgreSQL Database directory appears to contain a database; Skipping initialization
+[36mfrontend-dashboard_1  |[0m 
+[32mpostgres_1            |[0m 
+[36mfrontend-dashboard_1  |[0m PORT_BACKEND_SERVER=${PORT_BACKEND_SERVER:-${DEFAULT_PORT_BACKEND_SERVER}}
+[36mfrontend-dashboard_1  |[0m PORT_FRONTEND_DASHBOARD=${PORT_FRONTEND_DASHBOARD:-${DEFAULT_PORT_FRONTEND_DASHBOARD}}
+[32mpostgres_1            |[0m LOG:  database system was shut down at 2020-07-24 13:26:43 UTC
+[36mfrontend-dashboard_1  |[0m 
+[36mfrontend-dashboard_1  |[0m cd /usr/share/nginx/html/static
+[36mfrontend-dashboard_1  |[0m 
+[36mfrontend-dashboard_1  |[0m 
+[36mfrontend-dashboard_1  |[0m TARGET_FILE="app.*.js"
+[36mfrontend-dashboard_1  |[0m 
+[36mfrontend-dashboard_1  |[0m cp app.template ${TARGET_FILE}
+[36mfrontend-dashboard_1  |[0m 
+[36mfrontend-dashboard_1  |[0m sed -i "s/:${DEFAULT_PORT_BACKEND_SERVER}/:${PORT_BACKEND_SERVER}/g" ${TARGET_FILE}
+[36mfrontend-dashboard_1  |[0m sed -i "s/:${DEFAULT_PORT_FRONTEND_DASHBOARD}/:${PORT_FRONTEND_DASHBOARD}/g" ${TARGET_FILE}
+[36mfrontend-dashboard_1  |[0m 
+[32mpostgres_1            |[0m LOG:  MultiXact member wraparound protections are now enabled
+[32mpostgres_1            |[0m LOG:  database system is ready to accept connections
+[31mserver_1              |[0m [2020-07-24 13:31:07 +0000] [1] [INFO] Starting gunicorn 19.7.1
+[31mserver_1              |[0m [2020-07-24 13:31:07 +0000] [1] [INFO] Listening at: http://0.0.0.0:5000 (1)
+[31mserver_1              |[0m [2020-07-24 13:31:07 +0000] [1] [INFO] Using worker: sync
+[31mserver_1              |[0m [2020-07-24 13:31:07 +0000] [9] [INFO] Booting worker with pid: 9
+[35mworker_1              |[0m Starting scheduler and 2 workers for queues: queries,scheduled_queries,celery,schemas...
+[31mserver_1              |[0m [2020-07-24 13:31:07 +0000] [11] [INFO] Booting worker with pid: 11
+[31mserver_1              |[0m [2020-07-24 13:31:08,537][PID:9][DEBUG][root] Creating Redis connection (redis://redis:6379/0)
+[35mworker_1              |[0m [2020-07-24 13:31:08,239][PID:1][DEBUG][root] Creating Redis connection (redis://redis:6379/0)
+[35mworker_1              |[0m [2020-07-24 13:31:08,559][PID:1][DEBUG][passlib.utils.compat] loaded lazy attr 'SafeConfigParser': <class ConfigParser.SafeConfigParser at 0x7f8beaa81440>
+[35mworker_1              |[0m [2020-07-24 13:31:08,560][PID:1][DEBUG][passlib.utils.compat] loaded lazy attr 'NativeStringIO': <built-in function StringIO>
+[31mserver_1              |[0m [2020-07-24 13:31:08,532][PID:11][DEBUG][root] Creating Redis connection (redis://redis:6379/0)
+[31mserver_1              |[0m [2020-07-24 13:31:09,163][PID:9][DEBUG][passlib.utils.compat] loaded lazy attr 'SafeConfigParser': <class ConfigParser.SafeConfigParser at 0x7fc8ad847f30>
+[31mserver_1              |[0m [2020-07-24 13:31:09,161][PID:11][DEBUG][passlib.utils.compat] loaded lazy attr 'SafeConfigParser': <class ConfigParser.SafeConfigParser at 0x7fc8ad847f30>
+[31mserver_1              |[0m [2020-07-24 13:31:09,165][PID:11][DEBUG][passlib.utils.compat] loaded lazy attr 'NativeStringIO': <built-in function StringIO>
+[31mserver_1              |[0m [2020-07-24 13:31:09,165][PID:9][DEBUG][passlib.utils.compat] loaded lazy attr 'NativeStringIO': <built-in function StringIO>
+[31mserver_1              |[0m [2020-07-24 13:31:09,167][PID:11][DEBUG][passlib.utils.compat] loaded lazy attr 'BytesIO': <built-in function StringIO>
+[35mworker_1              |[0m [2020-07-24 13:31:08,560][PID:1][DEBUG][passlib.utils.compat] loaded lazy attr 'BytesIO': <built-in function StringIO>
+[35mworker_1              |[0m [2020-07-24 13:31:13,527][PID:1][INFO][MainProcess] Connected to redis://redis:6379/0
+[35mworker_1              |[0m [2020-07-24 13:31:13,606][PID:1][INFO][MainProcess] mingle: searching for neighbors
+[35mworker_1              |[0m [2020-07-24 13:31:14,748][PID:1][INFO][MainProcess] mingle: all alone
+[31mserver_1              |[0m [2020-07-24 13:31:09,167][PID:9][DEBUG][passlib.utils.compat] loaded lazy attr 'BytesIO': <built-in function StringIO>
+[31mserver_1              |[0m [2020-07-24 13:31:18,136][PID:11][DEBUG][redash.query_runner] Registering DB2 (db2) query runner.
+[31mserver_1              |[0m [2020-07-24 13:31:18,137][PID:9][DEBUG][redash.query_runner] Registering DB2 (db2) query runner.
+[31mserver_1              |[0m [2020-07-24 13:31:18,149][PID:11][DEBUG][redash.query_runner] Registering Elasticsearch (elasticsearch) query runner.
+[31mserver_1              |[0m [2020-07-24 13:31:18,151][PID:9][DEBUG][redash.query_runner] Registering Elasticsearch (elasticsearch) query runner.
+[31mserver_1              |[0m [2020-07-24 13:31:18,194][PID:11][DEBUG][redash.query_runner] Registering Excel (excel) query runner.
+[31mserver_1              |[0m [2020-07-24 13:31:18,198][PID:9][DEBUG][redash.query_runner] Registering Excel (excel) query runner.
+[31mserver_1              |[0m [2020-07-24 13:31:18,199][PID:11][DEBUG][redash.query_runner] Registering Excel Upload (excelupload) query runner.
+[31mserver_1              |[0m [2020-07-24 13:31:18,200][PID:11][DEBUG][redash.query_runner] Registering Graphite (graphite) query runner.
+[31mserver_1              |[0m [2020-07-24 13:31:18,201][PID:9][DEBUG][redash.query_runner] Registering Excel Upload (excelupload) query runner.
+[31mserver_1              |[0m [2020-07-24 13:31:18,202][PID:9][DEBUG][redash.query_runner] Registering Graphite (graphite) query runner.
+[31mserver_1              |[0m [2020-07-24 13:31:18,281][PID:11][DEBUG][redash.query_runner] Registering Hive (hive) query runner.
+[31mserver_1              |[0m [2020-07-24 13:31:18,282][PID:9][DEBUG][redash.query_runner] Registering Hive (hive) query runner.
+[31mserver_1              |[0m [2020-07-24 13:31:18,283][PID:11][DEBUG][redash.query_runner] Registering Hive (HTTP) (hive_http) query runner.
+[31mserver_1              |[0m [2020-07-24 13:31:18,283][PID:9][DEBUG][redash.query_runner] Registering Hive (HTTP) (hive_http) query runner.
+[31mserver_1              |[0m [2020-07-24 13:31:18,299][PID:9][DEBUG][redash.query_runner] Registering InfluxDB (influxdb) query runner.
+[31mserver_1              |[0m [2020-07-24 13:31:18,300][PID:11][DEBUG][redash.query_runner] Registering InfluxDB (influxdb) query runner.
+[31mserver_1              |[0m [2020-07-24 13:31:18,301][PID:9][DEBUG][redash.query_runner] Registering JIRA (JQL) (jirajql) query runner.
+[31mserver_1              |[0m [2020-07-24 13:31:18,303][PID:11][DEBUG][redash.query_runner] Registering JIRA (JQL) (jirajql) query runner.
+[31mserver_1              |[0m [2020-07-24 13:31:18,548][PID:11][DEBUG][redash.query_runner] Registering MongoDB (mongodb) query runner.
+[31mserver_1              |[0m [2020-07-24 13:31:18,546][PID:9][DEBUG][redash.query_runner] Registering MongoDB (mongodb) query runner.
+[31mserver_1              |[0m [2020-07-24 13:31:18,561][PID:11][DEBUG][redash.query_runner] Registering Microsoft SQL Server (mssql) query runner.
+[31mserver_1              |[0m [2020-07-24 13:31:18,562][PID:9][DEBUG][redash.query_runner] Registering Microsoft SQL Server (mssql) query runner.
+[31mserver_1              |[0m [2020-07-24 13:31:18,590][PID:9][DEBUG][redash.query_runner] Registering MySQL Database (mysql) query runner.
+[31mserver_1              |[0m [2020-07-24 13:31:18,591][PID:9][DEBUG][redash.query_runner] Registering Oslc (oslc) query runner.
+[31mserver_1              |[0m [2020-07-24 13:31:18,586][PID:11][DEBUG][redash.query_runner] Registering MySQL Database (mysql) query runner.
+[31mserver_1              |[0m [2020-07-24 13:31:18,596][PID:11][DEBUG][redash.query_runner] Registering Oslc (oslc) query runner.
+[31mserver_1              |[0m [2020-07-24 13:31:18,597][PID:9][DEBUG][redash.query_runner] Registering PostgreSQL (pg) query runner.
+[31mserver_1              |[0m [2020-07-24 13:31:18,601][PID:11][DEBUG][redash.query_runner] Registering PostgreSQL (pg) query runner.
+[31mserver_1              |[0m [2020-07-24 13:31:18,604][PID:11][DEBUG][redash.query_runner] Registering Prometheus (prometheus) query runner.
+[31mserver_1              |[0m [2020-07-24 13:31:18,606][PID:9][DEBUG][redash.query_runner] Registering Prometheus (prometheus) query runner.
+[31mserver_1              |[0m [2020-07-24 13:31:18,621][PID:11][DEBUG][redash.query_runner] Registering Query Results (results) query runner.
+[31mserver_1              |[0m [2020-07-24 13:31:18,622][PID:11][DEBUG][redash.query_runner] Registering Sqlite (sqlite) query runner.
+[31mserver_1              |[0m [2020-07-24 13:31:18,623][PID:9][DEBUG][redash.query_runner] Registering Query Results (results) query runner.
+[31mserver_1              |[0m [2020-07-24 13:31:18,624][PID:9][DEBUG][redash.query_runner] Registering Sqlite (sqlite) query runner.
+[31mserver_1              |[0m [2020-07-24 13:31:18,625][PID:11][DEBUG][redash.query_runner] Registering Url (url) query runner.
+[31mserver_1              |[0m [2020-07-24 13:31:18,627][PID:11][DEBUG][redash.query_runner] Registering Redis29 (redis29) query runner.
+[31mserver_1              |[0m [2020-07-24 13:31:18,628][PID:9][DEBUG][redash.query_runner] Registering Url (url) query runner.
+[31mserver_1              |[0m [2020-07-24 13:31:18,630][PID:9][DEBUG][redash.query_runner] Registering Redis29 (redis29) query runner.
+[31mserver_1              |[0m [2020-07-24 13:31:18,631][PID:11][DEBUG][redash.destinations] Registering Email (email) destinations.
+[31mserver_1              |[0m [2020-07-24 13:31:18,633][PID:9][DEBUG][redash.destinations] Registering Email (email) destinations.
+[31mserver_1              |[0m [2020-07-24 13:31:18,634][PID:9][DEBUG][redash.destinations] Registering Webhook (webhook) destinations.
+[35mworker_1              |[0m [2020-07-24 13:31:14,918][PID:1][INFO][MainProcess] celery@f830ea64c446 ready.
+[35mworker_1              |[0m [2020-07-24 13:31:21,920][PID:10][INFO][Beat] beat: Starting...
+[35mworker_1              |[0m [2020-07-24 13:31:52,126][PID:10][INFO][Beat] Scheduler: Sending due task refresh_queries (redash.tasks.refresh_queries)
+[35mworker_1              |[0m [2020-07-24 13:31:52,153][PID:1][INFO][MainProcess] Received task: redash.tasks.refresh_queries[18afd709-c06d-466c-bd2d-3bf504781484]  
+[32mpostgres_1            |[0m LOG:  autovacuum launcher started
+[35mworker_1              |[0m [2020-07-24 13:31:52,157][PID:12][INFO][ForkPoolWorker-3] task_name=redash.tasks.refresh_queries task_id=18afd709-c06d-466c-bd2d-3bf504781484 Refreshing queries...
+[35mworker_1              |[0m [2020-07-24 13:31:53,083][PID:12][ERROR][ForkPoolWorker-3] Task redash.tasks.refresh_queries[18afd709-c06d-466c-bd2d-3bf504781484] raised unexpected: ProgrammingError('(psycopg2.ProgrammingError) relation "queries" does not exist\nLINE 2: FROM queries LEFT OUTER JOIN query_results AS query_results_...\n             ^\n',)
+[35mworker_1              |[0m Traceback (most recent call last):
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/celery/app/trace.py", line 382, in trace_task
+[35mworker_1              |[0m     R = retval = fun(*args, **kwargs)
+[35mworker_1              |[0m   File "/app/redash/worker.py", line 62, in __call__
+[35mworker_1              |[0m     return TaskBase.__call__(self, *args, **kwargs)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/celery/app/trace.py", line 641, in __protected_call__
+[35mworker_1              |[0m     return self.run(*args, **kwargs)
+[35mworker_1              |[0m   File "/app/redash/tasks/queries.py", line 170, in refresh_queries
+[35mworker_1              |[0m     for query in models.Query.outdated_queries():
+[35mworker_1              |[0m   File "/app/redash/models/__init__.py", line 658, in outdated_queries
+[35mworker_1              |[0m     for query in queries:
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/query.py", line 2995, in __iter__
+[35mworker_1              |[0m     return self._execute_and_instances(context)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/query.py", line 3018, in _execute_and_instances
+[35mworker_1              |[0m     result = conn.execute(querycontext.statement, self._params)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 948, in execute
+[35mworker_1              |[0m     return meth(self, multiparams, params)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/sql/elements.py", line 269, in _execute_on_connection
+[35mworker_1              |[0m     return connection._execute_clauseelement(self, multiparams, params)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1060, in _execute_clauseelement
+[35mworker_1              |[0m     compiled_sql, distilled_params
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1200, in _execute_context
+[35mworker_1              |[0m     context)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1413, in _handle_dbapi_exception
+[35mworker_1              |[0m     exc_info
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/util/compat.py", line 265, in raise_from_cause
+[35mworker_1              |[0m     reraise(type(exception), exception, tb=exc_tb, cause=cause)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1193, in _execute_context
+[35mworker_1              |[0m     context)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/default.py", line 509, in do_execute
+[35mworker_1              |[0m     cursor.execute(statement, parameters)
+[35mworker_1              |[0m ProgrammingError: (psycopg2.ProgrammingError) relation "queries" does not exist
+[35mworker_1              |[0m LINE 2: FROM queries LEFT OUTER JOIN query_results AS query_results_...
+[35mworker_1              |[0m              ^
+[35mworker_1              |[0m  [SQL: 'SELECT queries.query AS queries_query, queries.updated_at AS queries_updated_at, queries.created_at AS queries_created_at, queries.id AS queries_id, queries.version AS queries_version, queries.org_id AS queries_org_id, queries.folder_id AS queries_folder_id, queries.data_source_id AS queries_data_source_id, queries.latest_query_data_id AS queries_latest_query_data_id, queries.name AS queries_name, queries.description AS queries_description, queries.query_hash AS queries_query_hash, queries.api_key AS queries_api_key, queries.user_id AS queries_user_id, queries.last_modified_by_id AS queries_last_modified_by_id, queries.is_archived AS queries_is_archived, queries.is_draft AS queries_is_draft, queries.schedule AS queries_schedule, queries.schedule_failures AS queries_schedule_failures, queries.options AS queries_options, queries.search_vector AS queries_search_vector, queries.tags AS queries_tags, query_results_1.id AS query_results_1_id, query_results_1.retrieved_at AS query_results_1_retrieved_at \nFROM queries LEFT OUTER JOIN query_results AS query_results_1 ON query_results_1.id = queries.latest_query_data_id \nWHERE queries.schedule IS NOT NULL ORDER BY queries.id'] (Background on this error at: http://sqlalche.me/e/f405)
+[35mworker_1              |[0m [2020-07-24 13:32:22,112][PID:10][INFO][Beat] Scheduler: Sending due task sync_user_details (redash.tasks.sync_user_details)
+[35mworker_1              |[0m [2020-07-24 13:32:22,115][PID:1][INFO][MainProcess] Received task: redash.tasks.sync_user_details[bad39526-6afa-4d13-be90-a98171404ada]   expires:[2020-07-24 13:33:07.113479+00:00]
+[35mworker_1              |[0m [2020-07-24 13:32:22,118][PID:12][INFO][ForkPoolWorker-3] Task redash.tasks.sync_user_details[bad39526-6afa-4d13-be90-a98171404ada] succeeded in 0.00103674299999s: None
+[35mworker_1              |[0m [2020-07-24 13:32:22,121][PID:10][INFO][Beat] Scheduler: Sending due task refresh_queries (redash.tasks.refresh_queries)
+[35mworker_1              |[0m [2020-07-24 13:32:22,123][PID:1][INFO][MainProcess] Received task: redash.tasks.refresh_queries[202625ef-8875-4b7a-8401-f53f1b6df5c0]  
+[32mpostgres_1            |[0m ERROR:  relation "queries" does not exist at character 1019
+[32mpostgres_1            |[0m STATEMENT:  SELECT queries.query AS queries_query, queries.updated_at AS queries_updated_at, queries.created_at AS queries_created_at, queries.id AS queries_id, queries.version AS queries_version, queries.org_id AS queries_org_id, queries.folder_id AS queries_folder_id, queries.data_source_id AS queries_data_source_id, queries.latest_query_data_id AS queries_latest_query_data_id, queries.name AS queries_name, queries.description AS queries_description, queries.query_hash AS queries_query_hash, queries.api_key AS queries_api_key, queries.user_id AS queries_user_id, queries.last_modified_by_id AS queries_last_modified_by_id, queries.is_archived AS queries_is_archived, queries.is_draft AS queries_is_draft, queries.schedule AS queries_schedule, queries.schedule_failures AS queries_schedule_failures, queries.options AS queries_options, queries.search_vector AS queries_search_vector, queries.tags AS queries_tags, query_results_1.id AS query_results_1_id, query_results_1.retrieved_at AS query_results_1_retrieved_at 
+[32mpostgres_1            |[0m 	FROM queries LEFT OUTER JOIN query_results AS query_results_1 ON query_results_1.id = queries.latest_query_data_id 
+[32mpostgres_1            |[0m 	WHERE queries.schedule IS NOT NULL ORDER BY queries.id
+[35mworker_1              |[0m [2020-07-24 13:32:22,305][PID:11][INFO][ForkPoolWorker-2] task_name=redash.tasks.refresh_queries task_id=202625ef-8875-4b7a-8401-f53f1b6df5c0 Refreshing queries...
+[35mworker_1              |[0m [2020-07-24 13:32:22,572][PID:11][ERROR][ForkPoolWorker-2] Task redash.tasks.refresh_queries[202625ef-8875-4b7a-8401-f53f1b6df5c0] raised unexpected: ProgrammingError('(psycopg2.ProgrammingError) relation "queries" does not exist\nLINE 2: FROM queries LEFT OUTER JOIN query_results AS query_results_...\n             ^\n',)
+[35mworker_1              |[0m Traceback (most recent call last):
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/celery/app/trace.py", line 382, in trace_task
+[35mworker_1              |[0m     R = retval = fun(*args, **kwargs)
+[35mworker_1              |[0m   File "/app/redash/worker.py", line 62, in __call__
+[35mworker_1              |[0m     return TaskBase.__call__(self, *args, **kwargs)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/celery/app/trace.py", line 641, in __protected_call__
+[35mworker_1              |[0m     return self.run(*args, **kwargs)
+[35mworker_1              |[0m   File "/app/redash/tasks/queries.py", line 170, in refresh_queries
+[35mworker_1              |[0m     for query in models.Query.outdated_queries():
+[35mworker_1              |[0m   File "/app/redash/models/__init__.py", line 658, in outdated_queries
+[35mworker_1              |[0m     for query in queries:
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/query.py", line 2995, in __iter__
+[35mworker_1              |[0m     return self._execute_and_instances(context)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/query.py", line 3018, in _execute_and_instances
+[35mworker_1              |[0m     result = conn.execute(querycontext.statement, self._params)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 948, in execute
+[35mworker_1              |[0m     return meth(self, multiparams, params)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/sql/elements.py", line 269, in _execute_on_connection
+[35mworker_1              |[0m     return connection._execute_clauseelement(self, multiparams, params)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1060, in _execute_clauseelement
+[35mworker_1              |[0m     compiled_sql, distilled_params
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1200, in _execute_context
+[35mworker_1              |[0m     context)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1413, in _handle_dbapi_exception
+[35mworker_1              |[0m     exc_info
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/util/compat.py", line 265, in raise_from_cause
+[35mworker_1              |[0m     reraise(type(exception), exception, tb=exc_tb, cause=cause)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1193, in _execute_context
+[35mworker_1              |[0m     context)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/default.py", line 509, in do_execute
+[35mworker_1              |[0m     cursor.execute(statement, parameters)
+[35mworker_1              |[0m ProgrammingError: (psycopg2.ProgrammingError) relation "queries" does not exist
+[35mworker_1              |[0m LINE 2: FROM queries LEFT OUTER JOIN query_results AS query_results_...
+[35mworker_1              |[0m              ^
+[35mworker_1              |[0m  [SQL: 'SELECT queries.query AS queries_query, queries.updated_at AS queries_updated_at, queries.created_at AS queries_created_at, queries.id AS queries_id, queries.version AS queries_version, queries.org_id AS queries_org_id, queries.folder_id AS queries_folder_id, queries.data_source_id AS queries_data_source_id, queries.latest_query_data_id AS queries_latest_query_data_id, queries.name AS queries_name, queries.description AS queries_description, queries.query_hash AS queries_query_hash, queries.api_key AS queries_api_key, queries.user_id AS queries_user_id, queries.last_modified_by_id AS queries_last_modified_by_id, queries.is_archived AS queries_is_archived, queries.is_draft AS queries_is_draft, queries.schedule AS queries_schedule, queries.schedule_failures AS queries_schedule_failures, queries.options AS queries_options, queries.search_vector AS queries_search_vector, queries.tags AS queries_tags, query_results_1.id AS query_results_1_id, query_results_1.retrieved_at AS query_results_1_retrieved_at \nFROM queries LEFT OUTER JOIN query_results AS query_results_1 ON query_results_1.id = queries.latest_query_data_id \nWHERE queries.schedule IS NOT NULL ORDER BY queries.id'] (Background on this error at: http://sqlalche.me/e/f405)
+[35mworker_1              |[0m [2020-07-24 13:32:52,126][PID:10][INFO][Beat] Scheduler: Sending due task refresh_queries (redash.tasks.refresh_queries)
+[35mworker_1              |[0m [2020-07-24 13:32:52,131][PID:1][INFO][MainProcess] Received task: redash.tasks.refresh_queries[f058fe19-73f7-415f-bc02-127435c8487d]  
+[32mpostgres_1            |[0m ERROR:  relation "queries" does not exist at character 1019
+[32mpostgres_1            |[0m STATEMENT:  SELECT queries.query AS queries_query, queries.updated_at AS queries_updated_at, queries.created_at AS queries_created_at, queries.id AS queries_id, queries.version AS queries_version, queries.org_id AS queries_org_id, queries.folder_id AS queries_folder_id, queries.data_source_id AS queries_data_source_id, queries.latest_query_data_id AS queries_latest_query_data_id, queries.name AS queries_name, queries.description AS queries_description, queries.query_hash AS queries_query_hash, queries.api_key AS queries_api_key, queries.user_id AS queries_user_id, queries.last_modified_by_id AS queries_last_modified_by_id, queries.is_archived AS queries_is_archived, queries.is_draft AS queries_is_draft, queries.schedule AS queries_schedule, queries.schedule_failures AS queries_schedule_failures, queries.options AS queries_options, queries.search_vector AS queries_search_vector, queries.tags AS queries_tags, query_results_1.id AS query_results_1_id, query_results_1.retrieved_at AS query_results_1_retrieved_at 
+[32mpostgres_1            |[0m 	FROM queries LEFT OUTER JOIN query_results AS query_results_1 ON query_results_1.id = queries.latest_query_data_id 
+[32mpostgres_1            |[0m 	WHERE queries.schedule IS NOT NULL ORDER BY queries.id
+[35mworker_1              |[0m [2020-07-24 13:32:52,133][PID:12][INFO][ForkPoolWorker-3] task_name=redash.tasks.refresh_queries task_id=f058fe19-73f7-415f-bc02-127435c8487d Refreshing queries...
+[35mworker_1              |[0m [2020-07-24 13:32:52,142][PID:12][ERROR][ForkPoolWorker-3] Task redash.tasks.refresh_queries[f058fe19-73f7-415f-bc02-127435c8487d] raised unexpected: ProgrammingError('(psycopg2.ProgrammingError) relation "queries" does not exist\nLINE 2: FROM queries LEFT OUTER JOIN query_results AS query_results_...\n             ^\n',)
+[35mworker_1              |[0m Traceback (most recent call last):
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/celery/app/trace.py", line 382, in trace_task
+[35mworker_1              |[0m     R = retval = fun(*args, **kwargs)
+[35mworker_1              |[0m   File "/app/redash/worker.py", line 62, in __call__
+[35mworker_1              |[0m     return TaskBase.__call__(self, *args, **kwargs)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/celery/app/trace.py", line 641, in __protected_call__
+[35mworker_1              |[0m     return self.run(*args, **kwargs)
+[35mworker_1              |[0m   File "/app/redash/tasks/queries.py", line 170, in refresh_queries
+[35mworker_1              |[0m     for query in models.Query.outdated_queries():
+[35mworker_1              |[0m   File "/app/redash/models/__init__.py", line 658, in outdated_queries
+[35mworker_1              |[0m     for query in queries:
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/query.py", line 2995, in __iter__
+[35mworker_1              |[0m     return self._execute_and_instances(context)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/query.py", line 3018, in _execute_and_instances
+[35mworker_1              |[0m     result = conn.execute(querycontext.statement, self._params)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 948, in execute
+[35mworker_1              |[0m     return meth(self, multiparams, params)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/sql/elements.py", line 269, in _execute_on_connection
+[35mworker_1              |[0m     return connection._execute_clauseelement(self, multiparams, params)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1060, in _execute_clauseelement
+[35mworker_1              |[0m     compiled_sql, distilled_params
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1200, in _execute_context
+[35mworker_1              |[0m     context)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1413, in _handle_dbapi_exception
+[35mworker_1              |[0m     exc_info
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/util/compat.py", line 265, in raise_from_cause
+[35mworker_1              |[0m     reraise(type(exception), exception, tb=exc_tb, cause=cause)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1193, in _execute_context
+[35mworker_1              |[0m     context)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/default.py", line 509, in do_execute
+[35mworker_1              |[0m     cursor.execute(statement, parameters)
+[35mworker_1              |[0m ProgrammingError: (psycopg2.ProgrammingError) relation "queries" does not exist
+[35mworker_1              |[0m LINE 2: FROM queries LEFT OUTER JOIN query_results AS query_results_...
+[35mworker_1              |[0m              ^
+[35mworker_1              |[0m  [SQL: 'SELECT queries.query AS queries_query, queries.updated_at AS queries_updated_at, queries.created_at AS queries_created_at, queries.id AS queries_id, queries.version AS queries_version, queries.org_id AS queries_org_id, queries.folder_id AS queries_folder_id, queries.data_source_id AS queries_data_source_id, queries.latest_query_data_id AS queries_latest_query_data_id, queries.name AS queries_name, queries.description AS queries_description, queries.query_hash AS queries_query_hash, queries.api_key AS queries_api_key, queries.user_id AS queries_user_id, queries.last_modified_by_id AS queries_last_modified_by_id, queries.is_archived AS queries_is_archived, queries.is_draft AS queries_is_draft, queries.schedule AS queries_schedule, queries.schedule_failures AS queries_schedule_failures, queries.options AS queries_options, queries.search_vector AS queries_search_vector, queries.tags AS queries_tags, query_results_1.id AS query_results_1_id, query_results_1.retrieved_at AS query_results_1_retrieved_at \nFROM queries LEFT OUTER JOIN query_results AS query_results_1 ON query_results_1.id = queries.latest_query_data_id \nWHERE queries.schedule IS NOT NULL ORDER BY queries.id'] (Background on this error at: http://sqlalche.me/e/f405)
+[35mworker_1              |[0m [2020-07-24 13:33:22,123][PID:10][INFO][Beat] Scheduler: Sending due task sync_user_details (redash.tasks.sync_user_details)
+[35mworker_1              |[0m [2020-07-24 13:33:22,126][PID:10][INFO][Beat] Scheduler: Sending due task refresh_queries (redash.tasks.refresh_queries)
+[35mworker_1              |[0m [2020-07-24 13:33:22,129][PID:1][INFO][MainProcess] Received task: redash.tasks.sync_user_details[667a3dfd-4b3c-4a04-9282-639420ce55f8]   expires:[2020-07-24 13:34:07.124562+00:00]
+[35mworker_1              |[0m [2020-07-24 13:33:22,131][PID:1][INFO][MainProcess] Received task: redash.tasks.refresh_queries[b3aa0aa8-bf18-4a7f-bdb1-16f12470a000]  
+[35mworker_1              |[0m [2020-07-24 13:33:22,132][PID:12][INFO][ForkPoolWorker-3] Task redash.tasks.sync_user_details[667a3dfd-4b3c-4a04-9282-639420ce55f8] succeeded in 0.000720874000081s: None
+[32mpostgres_1            |[0m ERROR:  relation "queries" does not exist at character 1019
+[32mpostgres_1            |[0m STATEMENT:  SELECT queries.query AS queries_query, queries.updated_at AS queries_updated_at, queries.created_at AS queries_created_at, queries.id AS queries_id, queries.version AS queries_version, queries.org_id AS queries_org_id, queries.folder_id AS queries_folder_id, queries.data_source_id AS queries_data_source_id, queries.latest_query_data_id AS queries_latest_query_data_id, queries.name AS queries_name, queries.description AS queries_description, queries.query_hash AS queries_query_hash, queries.api_key AS queries_api_key, queries.user_id AS queries_user_id, queries.last_modified_by_id AS queries_last_modified_by_id, queries.is_archived AS queries_is_archived, queries.is_draft AS queries_is_draft, queries.schedule AS queries_schedule, queries.schedule_failures AS queries_schedule_failures, queries.options AS queries_options, queries.search_vector AS queries_search_vector, queries.tags AS queries_tags, query_results_1.id AS query_results_1_id, query_results_1.retrieved_at AS query_results_1_retrieved_at 
+[32mpostgres_1            |[0m 	FROM queries LEFT OUTER JOIN query_results AS query_results_1 ON query_results_1.id = queries.latest_query_data_id 
+[32mpostgres_1            |[0m 	WHERE queries.schedule IS NOT NULL ORDER BY queries.id
+[35mworker_1              |[0m [2020-07-24 13:33:22,133][PID:11][INFO][ForkPoolWorker-2] task_name=redash.tasks.refresh_queries task_id=b3aa0aa8-bf18-4a7f-bdb1-16f12470a000 Refreshing queries...
+[35mworker_1              |[0m [2020-07-24 13:33:22,142][PID:11][ERROR][ForkPoolWorker-2] Task redash.tasks.refresh_queries[b3aa0aa8-bf18-4a7f-bdb1-16f12470a000] raised unexpected: ProgrammingError('(psycopg2.ProgrammingError) relation "queries" does not exist\nLINE 2: FROM queries LEFT OUTER JOIN query_results AS query_results_...\n             ^\n',)
+[35mworker_1              |[0m Traceback (most recent call last):
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/celery/app/trace.py", line 382, in trace_task
+[35mworker_1              |[0m     R = retval = fun(*args, **kwargs)
+[35mworker_1              |[0m   File "/app/redash/worker.py", line 62, in __call__
+[35mworker_1              |[0m     return TaskBase.__call__(self, *args, **kwargs)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/celery/app/trace.py", line 641, in __protected_call__
+[35mworker_1              |[0m     return self.run(*args, **kwargs)
+[35mworker_1              |[0m   File "/app/redash/tasks/queries.py", line 170, in refresh_queries
+[35mworker_1              |[0m     for query in models.Query.outdated_queries():
+[35mworker_1              |[0m   File "/app/redash/models/__init__.py", line 658, in outdated_queries
+[35mworker_1              |[0m     for query in queries:
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/query.py", line 2995, in __iter__
+[35mworker_1              |[0m     return self._execute_and_instances(context)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/query.py", line 3018, in _execute_and_instances
+[35mworker_1              |[0m     result = conn.execute(querycontext.statement, self._params)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 948, in execute
+[35mworker_1              |[0m     return meth(self, multiparams, params)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/sql/elements.py", line 269, in _execute_on_connection
+[35mworker_1              |[0m     return connection._execute_clauseelement(self, multiparams, params)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1060, in _execute_clauseelement
+[35mworker_1              |[0m     compiled_sql, distilled_params
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1200, in _execute_context
+[35mworker_1              |[0m     context)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1413, in _handle_dbapi_exception
+[35mworker_1              |[0m     exc_info
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/util/compat.py", line 265, in raise_from_cause
+[35mworker_1              |[0m     reraise(type(exception), exception, tb=exc_tb, cause=cause)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1193, in _execute_context
+[35mworker_1              |[0m     context)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/default.py", line 509, in do_execute
+[35mworker_1              |[0m     cursor.execute(statement, parameters)
+[35mworker_1              |[0m ProgrammingError: (psycopg2.ProgrammingError) relation "queries" does not exist
+[35mworker_1              |[0m LINE 2: FROM queries LEFT OUTER JOIN query_results AS query_results_...
+[35mworker_1              |[0m              ^
+[35mworker_1              |[0m  [SQL: 'SELECT queries.query AS queries_query, queries.updated_at AS queries_updated_at, queries.created_at AS queries_created_at, queries.id AS queries_id, queries.version AS queries_version, queries.org_id AS queries_org_id, queries.folder_id AS queries_folder_id, queries.data_source_id AS queries_data_source_id, queries.latest_query_data_id AS queries_latest_query_data_id, queries.name AS queries_name, queries.description AS queries_description, queries.query_hash AS queries_query_hash, queries.api_key AS queries_api_key, queries.user_id AS queries_user_id, queries.last_modified_by_id AS queries_last_modified_by_id, queries.is_archived AS queries_is_archived, queries.is_draft AS queries_is_draft, queries.schedule AS queries_schedule, queries.schedule_failures AS queries_schedule_failures, queries.options AS queries_options, queries.search_vector AS queries_search_vector, queries.tags AS queries_tags, query_results_1.id AS query_results_1_id, query_results_1.retrieved_at AS query_results_1_retrieved_at \nFROM queries LEFT OUTER JOIN query_results AS query_results_1 ON query_results_1.id = queries.latest_query_data_id \nWHERE queries.schedule IS NOT NULL ORDER BY queries.id'] (Background on this error at: http://sqlalche.me/e/f405)
+[35mworker_1              |[0m [2020-07-24 13:33:52,141][PID:10][INFO][Beat] Scheduler: Sending due task refresh_queries (redash.tasks.refresh_queries)
+[35mworker_1              |[0m [2020-07-24 13:33:52,145][PID:1][INFO][MainProcess] Received task: redash.tasks.refresh_queries[13d5264e-4dfd-43fa-b9a2-63b081ba686b]  
+[32mpostgres_1            |[0m ERROR:  relation "queries" does not exist at character 1019
+[32mpostgres_1            |[0m STATEMENT:  SELECT queries.query AS queries_query, queries.updated_at AS queries_updated_at, queries.created_at AS queries_created_at, queries.id AS queries_id, queries.version AS queries_version, queries.org_id AS queries_org_id, queries.folder_id AS queries_folder_id, queries.data_source_id AS queries_data_source_id, queries.latest_query_data_id AS queries_latest_query_data_id, queries.name AS queries_name, queries.description AS queries_description, queries.query_hash AS queries_query_hash, queries.api_key AS queries_api_key, queries.user_id AS queries_user_id, queries.last_modified_by_id AS queries_last_modified_by_id, queries.is_archived AS queries_is_archived, queries.is_draft AS queries_is_draft, queries.schedule AS queries_schedule, queries.schedule_failures AS queries_schedule_failures, queries.options AS queries_options, queries.search_vector AS queries_search_vector, queries.tags AS queries_tags, query_results_1.id AS query_results_1_id, query_results_1.retrieved_at AS query_results_1_retrieved_at 
+[32mpostgres_1            |[0m 	FROM queries LEFT OUTER JOIN query_results AS query_results_1 ON query_results_1.id = queries.latest_query_data_id 
+[32mpostgres_1            |[0m 	WHERE queries.schedule IS NOT NULL ORDER BY queries.id
+[35mworker_1              |[0m [2020-07-24 13:33:52,147][PID:12][INFO][ForkPoolWorker-3] task_name=redash.tasks.refresh_queries task_id=13d5264e-4dfd-43fa-b9a2-63b081ba686b Refreshing queries...
+[35mworker_1              |[0m [2020-07-24 13:33:52,155][PID:12][ERROR][ForkPoolWorker-3] Task redash.tasks.refresh_queries[13d5264e-4dfd-43fa-b9a2-63b081ba686b] raised unexpected: ProgrammingError('(psycopg2.ProgrammingError) relation "queries" does not exist\nLINE 2: FROM queries LEFT OUTER JOIN query_results AS query_results_...\n             ^\n',)
+[35mworker_1              |[0m Traceback (most recent call last):
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/celery/app/trace.py", line 382, in trace_task
+[35mworker_1              |[0m     R = retval = fun(*args, **kwargs)
+[35mworker_1              |[0m   File "/app/redash/worker.py", line 62, in __call__
+[35mworker_1              |[0m     return TaskBase.__call__(self, *args, **kwargs)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/celery/app/trace.py", line 641, in __protected_call__
+[35mworker_1              |[0m     return self.run(*args, **kwargs)
+[35mworker_1              |[0m   File "/app/redash/tasks/queries.py", line 170, in refresh_queries
+[35mworker_1              |[0m     for query in models.Query.outdated_queries():
+[35mworker_1              |[0m   File "/app/redash/models/__init__.py", line 658, in outdated_queries
+[35mworker_1              |[0m     for query in queries:
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/query.py", line 2995, in __iter__
+[35mworker_1              |[0m     return self._execute_and_instances(context)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/query.py", line 3018, in _execute_and_instances
+[35mworker_1              |[0m     result = conn.execute(querycontext.statement, self._params)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 948, in execute
+[35mworker_1              |[0m     return meth(self, multiparams, params)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/sql/elements.py", line 269, in _execute_on_connection
+[35mworker_1              |[0m     return connection._execute_clauseelement(self, multiparams, params)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1060, in _execute_clauseelement
+[35mworker_1              |[0m     compiled_sql, distilled_params
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1200, in _execute_context
+[35mworker_1              |[0m     context)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1413, in _handle_dbapi_exception
+[35mworker_1              |[0m     exc_info
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/util/compat.py", line 265, in raise_from_cause
+[35mworker_1              |[0m     reraise(type(exception), exception, tb=exc_tb, cause=cause)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1193, in _execute_context
+[35mworker_1              |[0m     context)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/default.py", line 509, in do_execute
+[35mworker_1              |[0m     cursor.execute(statement, parameters)
+[35mworker_1              |[0m ProgrammingError: (psycopg2.ProgrammingError) relation "queries" does not exist
+[35mworker_1              |[0m LINE 2: FROM queries LEFT OUTER JOIN query_results AS query_results_...
+[35mworker_1              |[0m              ^
+[35mworker_1              |[0m  [SQL: 'SELECT queries.query AS queries_query, queries.updated_at AS queries_updated_at, queries.created_at AS queries_created_at, queries.id AS queries_id, queries.version AS queries_version, queries.org_id AS queries_org_id, queries.folder_id AS queries_folder_id, queries.data_source_id AS queries_data_source_id, queries.latest_query_data_id AS queries_latest_query_data_id, queries.name AS queries_name, queries.description AS queries_description, queries.query_hash AS queries_query_hash, queries.api_key AS queries_api_key, queries.user_id AS queries_user_id, queries.last_modified_by_id AS queries_last_modified_by_id, queries.is_archived AS queries_is_archived, queries.is_draft AS queries_is_draft, queries.schedule AS queries_schedule, queries.schedule_failures AS queries_schedule_failures, queries.options AS queries_options, queries.search_vector AS queries_search_vector, queries.tags AS queries_tags, query_results_1.id AS query_results_1_id, query_results_1.retrieved_at AS query_results_1_retrieved_at \nFROM queries LEFT OUTER JOIN query_results AS query_results_1 ON query_results_1.id = queries.latest_query_data_id \nWHERE queries.schedule IS NOT NULL ORDER BY queries.id'] (Background on this error at: http://sqlalche.me/e/f405)
+[35mworker_1              |[0m [2020-07-24 13:34:22,138][PID:10][INFO][Beat] Scheduler: Sending due task sync_user_details (redash.tasks.sync_user_details)
+[35mworker_1              |[0m [2020-07-24 13:34:22,141][PID:10][INFO][Beat] Scheduler: Sending due task refresh_queries (redash.tasks.refresh_queries)
+[35mworker_1              |[0m [2020-07-24 13:34:22,144][PID:1][INFO][MainProcess] Received task: redash.tasks.sync_user_details[dfbbff2f-fdfc-4b2f-b81e-ba1450ba9640]   expires:[2020-07-24 13:35:07.139682+00:00]
+[35mworker_1              |[0m [2020-07-24 13:34:22,146][PID:1][INFO][MainProcess] Received task: redash.tasks.refresh_queries[09b290f4-4110-4514-9ee1-a4bd51e6ea56]  
+[35mworker_1              |[0m [2020-07-24 13:34:22,148][PID:12][INFO][ForkPoolWorker-3] Task redash.tasks.sync_user_details[dfbbff2f-fdfc-4b2f-b81e-ba1450ba9640] succeeded in 0.000746475999904s: None
+[32mpostgres_1            |[0m ERROR:  relation "queries" does not exist at character 1019
+[32mpostgres_1            |[0m STATEMENT:  SELECT queries.query AS queries_query, queries.updated_at AS queries_updated_at, queries.created_at AS queries_created_at, queries.id AS queries_id, queries.version AS queries_version, queries.org_id AS queries_org_id, queries.folder_id AS queries_folder_id, queries.data_source_id AS queries_data_source_id, queries.latest_query_data_id AS queries_latest_query_data_id, queries.name AS queries_name, queries.description AS queries_description, queries.query_hash AS queries_query_hash, queries.api_key AS queries_api_key, queries.user_id AS queries_user_id, queries.last_modified_by_id AS queries_last_modified_by_id, queries.is_archived AS queries_is_archived, queries.is_draft AS queries_is_draft, queries.schedule AS queries_schedule, queries.schedule_failures AS queries_schedule_failures, queries.options AS queries_options, queries.search_vector AS queries_search_vector, queries.tags AS queries_tags, query_results_1.id AS query_results_1_id, query_results_1.retrieved_at AS query_results_1_retrieved_at 
+[32mpostgres_1            |[0m 	FROM queries LEFT OUTER JOIN query_results AS query_results_1 ON query_results_1.id = queries.latest_query_data_id 
+[32mpostgres_1            |[0m 	WHERE queries.schedule IS NOT NULL ORDER BY queries.id
+[35mworker_1              |[0m [2020-07-24 13:34:22,149][PID:11][INFO][ForkPoolWorker-2] task_name=redash.tasks.refresh_queries task_id=09b290f4-4110-4514-9ee1-a4bd51e6ea56 Refreshing queries...
+[35mworker_1              |[0m [2020-07-24 13:34:22,158][PID:11][ERROR][ForkPoolWorker-2] Task redash.tasks.refresh_queries[09b290f4-4110-4514-9ee1-a4bd51e6ea56] raised unexpected: ProgrammingError('(psycopg2.ProgrammingError) relation "queries" does not exist\nLINE 2: FROM queries LEFT OUTER JOIN query_results AS query_results_...\n             ^\n',)
+[35mworker_1              |[0m Traceback (most recent call last):
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/celery/app/trace.py", line 382, in trace_task
+[35mworker_1              |[0m     R = retval = fun(*args, **kwargs)
+[35mworker_1              |[0m   File "/app/redash/worker.py", line 62, in __call__
+[35mworker_1              |[0m     return TaskBase.__call__(self, *args, **kwargs)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/celery/app/trace.py", line 641, in __protected_call__
+[35mworker_1              |[0m     return self.run(*args, **kwargs)
+[35mworker_1              |[0m   File "/app/redash/tasks/queries.py", line 170, in refresh_queries
+[35mworker_1              |[0m     for query in models.Query.outdated_queries():
+[35mworker_1              |[0m   File "/app/redash/models/__init__.py", line 658, in outdated_queries
+[35mworker_1              |[0m     for query in queries:
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/query.py", line 2995, in __iter__
+[35mworker_1              |[0m     return self._execute_and_instances(context)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/query.py", line 3018, in _execute_and_instances
+[35mworker_1              |[0m     result = conn.execute(querycontext.statement, self._params)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 948, in execute
+[35mworker_1              |[0m     return meth(self, multiparams, params)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/sql/elements.py", line 269, in _execute_on_connection
+[35mworker_1              |[0m     return connection._execute_clauseelement(self, multiparams, params)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1060, in _execute_clauseelement
+[35mworker_1              |[0m     compiled_sql, distilled_params
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1200, in _execute_context
+[35mworker_1              |[0m     context)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1413, in _handle_dbapi_exception
+[35mworker_1              |[0m     exc_info
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/util/compat.py", line 265, in raise_from_cause
+[35mworker_1              |[0m     reraise(type(exception), exception, tb=exc_tb, cause=cause)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1193, in _execute_context
+[35mworker_1              |[0m     context)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/default.py", line 509, in do_execute
+[35mworker_1              |[0m     cursor.execute(statement, parameters)
+[35mworker_1              |[0m ProgrammingError: (psycopg2.ProgrammingError) relation "queries" does not exist
+[35mworker_1              |[0m LINE 2: FROM queries LEFT OUTER JOIN query_results AS query_results_...
+[35mworker_1              |[0m              ^
+[35mworker_1              |[0m  [SQL: 'SELECT queries.query AS queries_query, queries.updated_at AS queries_updated_at, queries.created_at AS queries_created_at, queries.id AS queries_id, queries.version AS queries_version, queries.org_id AS queries_org_id, queries.folder_id AS queries_folder_id, queries.data_source_id AS queries_data_source_id, queries.latest_query_data_id AS queries_latest_query_data_id, queries.name AS queries_name, queries.description AS queries_description, queries.query_hash AS queries_query_hash, queries.api_key AS queries_api_key, queries.user_id AS queries_user_id, queries.last_modified_by_id AS queries_last_modified_by_id, queries.is_archived AS queries_is_archived, queries.is_draft AS queries_is_draft, queries.schedule AS queries_schedule, queries.schedule_failures AS queries_schedule_failures, queries.options AS queries_options, queries.search_vector AS queries_search_vector, queries.tags AS queries_tags, query_results_1.id AS query_results_1_id, query_results_1.retrieved_at AS query_results_1_retrieved_at \nFROM queries LEFT OUTER JOIN query_results AS query_results_1 ON query_results_1.id = queries.latest_query_data_id \nWHERE queries.schedule IS NOT NULL ORDER BY queries.id'] (Background on this error at: http://sqlalche.me/e/f405)
+[35mworker_1              |[0m [2020-07-24 13:34:52,164][PID:10][INFO][Beat] Scheduler: Sending due task refresh_queries (redash.tasks.refresh_queries)
+[35mworker_1              |[0m [2020-07-24 13:34:52,170][PID:1][INFO][MainProcess] Received task: redash.tasks.refresh_queries[80dd0017-b766-4d4f-8a94-a5dc886ef005]  
+[32mpostgres_1            |[0m ERROR:  relation "queries" does not exist at character 1019
+[32mpostgres_1            |[0m STATEMENT:  SELECT queries.query AS queries_query, queries.updated_at AS queries_updated_at, queries.created_at AS queries_created_at, queries.id AS queries_id, queries.version AS queries_version, queries.org_id AS queries_org_id, queries.folder_id AS queries_folder_id, queries.data_source_id AS queries_data_source_id, queries.latest_query_data_id AS queries_latest_query_data_id, queries.name AS queries_name, queries.description AS queries_description, queries.query_hash AS queries_query_hash, queries.api_key AS queries_api_key, queries.user_id AS queries_user_id, queries.last_modified_by_id AS queries_last_modified_by_id, queries.is_archived AS queries_is_archived, queries.is_draft AS queries_is_draft, queries.schedule AS queries_schedule, queries.schedule_failures AS queries_schedule_failures, queries.options AS queries_options, queries.search_vector AS queries_search_vector, queries.tags AS queries_tags, query_results_1.id AS query_results_1_id, query_results_1.retrieved_at AS query_results_1_retrieved_at 
+[32mpostgres_1            |[0m 	FROM queries LEFT OUTER JOIN query_results AS query_results_1 ON query_results_1.id = queries.latest_query_data_id 
+[32mpostgres_1            |[0m 	WHERE queries.schedule IS NOT NULL ORDER BY queries.id
+[35mworker_1              |[0m [2020-07-24 13:34:52,172][PID:12][INFO][ForkPoolWorker-3] task_name=redash.tasks.refresh_queries task_id=80dd0017-b766-4d4f-8a94-a5dc886ef005 Refreshing queries...
+[35mworker_1              |[0m [2020-07-24 13:34:52,181][PID:12][ERROR][ForkPoolWorker-3] Task redash.tasks.refresh_queries[80dd0017-b766-4d4f-8a94-a5dc886ef005] raised unexpected: ProgrammingError('(psycopg2.ProgrammingError) relation "queries" does not exist\nLINE 2: FROM queries LEFT OUTER JOIN query_results AS query_results_...\n             ^\n',)
+[35mworker_1              |[0m Traceback (most recent call last):
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/celery/app/trace.py", line 382, in trace_task
+[35mworker_1              |[0m     R = retval = fun(*args, **kwargs)
+[35mworker_1              |[0m   File "/app/redash/worker.py", line 62, in __call__
+[35mworker_1              |[0m     return TaskBase.__call__(self, *args, **kwargs)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/celery/app/trace.py", line 641, in __protected_call__
+[35mworker_1              |[0m     return self.run(*args, **kwargs)
+[35mworker_1              |[0m   File "/app/redash/tasks/queries.py", line 170, in refresh_queries
+[35mworker_1              |[0m     for query in models.Query.outdated_queries():
+[35mworker_1              |[0m   File "/app/redash/models/__init__.py", line 658, in outdated_queries
+[35mworker_1              |[0m     for query in queries:
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/query.py", line 2995, in __iter__
+[35mworker_1              |[0m     return self._execute_and_instances(context)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/query.py", line 3018, in _execute_and_instances
+[35mworker_1              |[0m     result = conn.execute(querycontext.statement, self._params)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 948, in execute
+[35mworker_1              |[0m     return meth(self, multiparams, params)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/sql/elements.py", line 269, in _execute_on_connection
+[35mworker_1              |[0m     return connection._execute_clauseelement(self, multiparams, params)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1060, in _execute_clauseelement
+[35mworker_1              |[0m     compiled_sql, distilled_params
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1200, in _execute_context
+[35mworker_1              |[0m     context)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1413, in _handle_dbapi_exception
+[35mworker_1              |[0m     exc_info
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/util/compat.py", line 265, in raise_from_cause
+[35mworker_1              |[0m     reraise(type(exception), exception, tb=exc_tb, cause=cause)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1193, in _execute_context
+[35mworker_1              |[0m     context)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/default.py", line 509, in do_execute
+[35mworker_1              |[0m     cursor.execute(statement, parameters)
+[35mworker_1              |[0m ProgrammingError: (psycopg2.ProgrammingError) relation "queries" does not exist
+[35mworker_1              |[0m LINE 2: FROM queries LEFT OUTER JOIN query_results AS query_results_...
+[35mworker_1              |[0m              ^
+[35mworker_1              |[0m  [SQL: 'SELECT queries.query AS queries_query, queries.updated_at AS queries_updated_at, queries.created_at AS queries_created_at, queries.id AS queries_id, queries.version AS queries_version, queries.org_id AS queries_org_id, queries.folder_id AS queries_folder_id, queries.data_source_id AS queries_data_source_id, queries.latest_query_data_id AS queries_latest_query_data_id, queries.name AS queries_name, queries.description AS queries_description, queries.query_hash AS queries_query_hash, queries.api_key AS queries_api_key, queries.user_id AS queries_user_id, queries.last_modified_by_id AS queries_last_modified_by_id, queries.is_archived AS queries_is_archived, queries.is_draft AS queries_is_draft, queries.schedule AS queries_schedule, queries.schedule_failures AS queries_schedule_failures, queries.options AS queries_options, queries.search_vector AS queries_search_vector, queries.tags AS queries_tags, query_results_1.id AS query_results_1_id, query_results_1.retrieved_at AS query_results_1_retrieved_at \nFROM queries LEFT OUTER JOIN query_results AS query_results_1 ON query_results_1.id = queries.latest_query_data_id \nWHERE queries.schedule IS NOT NULL ORDER BY queries.id'] (Background on this error at: http://sqlalche.me/e/f405)
+[35mworker_1              |[0m [2020-07-24 13:35:22,164][PID:10][INFO][Beat] Scheduler: Sending due task refresh_queries (redash.tasks.refresh_queries)
+[35mworker_1              |[0m [2020-07-24 13:35:22,166][PID:1][INFO][MainProcess] Received task: redash.tasks.refresh_queries[ccaab5b7-13e8-4916-84be-68e8c3420900]  
+[35mworker_1              |[0m [2020-07-24 13:35:22,168][PID:12][INFO][ForkPoolWorker-3] task_name=redash.tasks.refresh_queries task_id=ccaab5b7-13e8-4916-84be-68e8c3420900 Refreshing queries...
+[32mpostgres_1            |[0m ERROR:  relation "queries" does not exist at character 1019
+[32mpostgres_1            |[0m STATEMENT:  SELECT queries.query AS queries_query, queries.updated_at AS queries_updated_at, queries.created_at AS queries_created_at, queries.id AS queries_id, queries.version AS queries_version, queries.org_id AS queries_org_id, queries.folder_id AS queries_folder_id, queries.data_source_id AS queries_data_source_id, queries.latest_query_data_id AS queries_latest_query_data_id, queries.name AS queries_name, queries.description AS queries_description, queries.query_hash AS queries_query_hash, queries.api_key AS queries_api_key, queries.user_id AS queries_user_id, queries.last_modified_by_id AS queries_last_modified_by_id, queries.is_archived AS queries_is_archived, queries.is_draft AS queries_is_draft, queries.schedule AS queries_schedule, queries.schedule_failures AS queries_schedule_failures, queries.options AS queries_options, queries.search_vector AS queries_search_vector, queries.tags AS queries_tags, query_results_1.id AS query_results_1_id, query_results_1.retrieved_at AS query_results_1_retrieved_at 
+[32mpostgres_1            |[0m 	FROM queries LEFT OUTER JOIN query_results AS query_results_1 ON query_results_1.id = queries.latest_query_data_id 
+[32mpostgres_1            |[0m 	WHERE queries.schedule IS NOT NULL ORDER BY queries.id
+[35mworker_1              |[0m [2020-07-24 13:35:22,172][PID:10][INFO][Beat] Scheduler: Sending due task sync_user_details (redash.tasks.sync_user_details)
+[35mworker_1              |[0m [2020-07-24 13:35:22,176][PID:1][INFO][MainProcess] Received task: redash.tasks.sync_user_details[336096a8-aaf2-45d3-a067-c8de404088aa]   expires:[2020-07-24 13:36:07.174157+00:00]
+[35mworker_1              |[0m [2020-07-24 13:35:22,184][PID:11][INFO][ForkPoolWorker-2] Task redash.tasks.sync_user_details[336096a8-aaf2-45d3-a067-c8de404088aa] succeeded in 0.00587712999982s: None
+[35mworker_1              |[0m [2020-07-24 13:35:22,188][PID:12][ERROR][ForkPoolWorker-3] Task redash.tasks.refresh_queries[ccaab5b7-13e8-4916-84be-68e8c3420900] raised unexpected: ProgrammingError('(psycopg2.ProgrammingError) relation "queries" does not exist\nLINE 2: FROM queries LEFT OUTER JOIN query_results AS query_results_...\n             ^\n',)
+[35mworker_1              |[0m Traceback (most recent call last):
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/celery/app/trace.py", line 382, in trace_task
+[35mworker_1              |[0m     R = retval = fun(*args, **kwargs)
+[35mworker_1              |[0m   File "/app/redash/worker.py", line 62, in __call__
+[35mworker_1              |[0m     return TaskBase.__call__(self, *args, **kwargs)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/celery/app/trace.py", line 641, in __protected_call__
+[35mworker_1              |[0m     return self.run(*args, **kwargs)
+[35mworker_1              |[0m   File "/app/redash/tasks/queries.py", line 170, in refresh_queries
+[35mworker_1              |[0m     for query in models.Query.outdated_queries():
+[35mworker_1              |[0m   File "/app/redash/models/__init__.py", line 658, in outdated_queries
+[35mworker_1              |[0m     for query in queries:
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/query.py", line 2995, in __iter__
+[35mworker_1              |[0m     return self._execute_and_instances(context)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/query.py", line 3018, in _execute_and_instances
+[35mworker_1              |[0m     result = conn.execute(querycontext.statement, self._params)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 948, in execute
+[35mworker_1              |[0m     return meth(self, multiparams, params)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/sql/elements.py", line 269, in _execute_on_connection
+[35mworker_1              |[0m     return connection._execute_clauseelement(self, multiparams, params)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1060, in _execute_clauseelement
+[35mworker_1              |[0m     compiled_sql, distilled_params
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1200, in _execute_context
+[35mworker_1              |[0m     context)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1413, in _handle_dbapi_exception
+[35mworker_1              |[0m     exc_info
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/util/compat.py", line 265, in raise_from_cause
+[35mworker_1              |[0m     reraise(type(exception), exception, tb=exc_tb, cause=cause)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1193, in _execute_context
+[35mworker_1              |[0m     context)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/default.py", line 509, in do_execute
+[35mworker_1              |[0m     cursor.execute(statement, parameters)
+[35mworker_1              |[0m ProgrammingError: (psycopg2.ProgrammingError) relation "queries" does not exist
+[35mworker_1              |[0m LINE 2: FROM queries LEFT OUTER JOIN query_results AS query_results_...
+[35mworker_1              |[0m              ^
+[35mworker_1              |[0m  [SQL: 'SELECT queries.query AS queries_query, queries.updated_at AS queries_updated_at, queries.created_at AS queries_created_at, queries.id AS queries_id, queries.version AS queries_version, queries.org_id AS queries_org_id, queries.folder_id AS queries_folder_id, queries.data_source_id AS queries_data_source_id, queries.latest_query_data_id AS queries_latest_query_data_id, queries.name AS queries_name, queries.description AS queries_description, queries.query_hash AS queries_query_hash, queries.api_key AS queries_api_key, queries.user_id AS queries_user_id, queries.last_modified_by_id AS queries_last_modified_by_id, queries.is_archived AS queries_is_archived, queries.is_draft AS queries_is_draft, queries.schedule AS queries_schedule, queries.schedule_failures AS queries_schedule_failures, queries.options AS queries_options, queries.search_vector AS queries_search_vector, queries.tags AS queries_tags, query_results_1.id AS query_results_1_id, query_results_1.retrieved_at AS query_results_1_retrieved_at \nFROM queries LEFT OUTER JOIN query_results AS query_results_1 ON query_results_1.id = queries.latest_query_data_id \nWHERE queries.schedule IS NOT NULL ORDER BY queries.id'] (Background on this error at: http://sqlalche.me/e/f405)
+[35mworker_1              |[0m [2020-07-24 13:35:52,181][PID:10][INFO][Beat] Scheduler: Sending due task refresh_queries (redash.tasks.refresh_queries)
+[35mworker_1              |[0m [2020-07-24 13:35:52,184][PID:1][INFO][MainProcess] Received task: redash.tasks.refresh_queries[cc0b9e3c-e16e-4a0c-bf07-e6451619d15d]  
+[32mpostgres_1            |[0m ERROR:  relation "queries" does not exist at character 1019
+[32mpostgres_1            |[0m STATEMENT:  SELECT queries.query AS queries_query, queries.updated_at AS queries_updated_at, queries.created_at AS queries_created_at, queries.id AS queries_id, queries.version AS queries_version, queries.org_id AS queries_org_id, queries.folder_id AS queries_folder_id, queries.data_source_id AS queries_data_source_id, queries.latest_query_data_id AS queries_latest_query_data_id, queries.name AS queries_name, queries.description AS queries_description, queries.query_hash AS queries_query_hash, queries.api_key AS queries_api_key, queries.user_id AS queries_user_id, queries.last_modified_by_id AS queries_last_modified_by_id, queries.is_archived AS queries_is_archived, queries.is_draft AS queries_is_draft, queries.schedule AS queries_schedule, queries.schedule_failures AS queries_schedule_failures, queries.options AS queries_options, queries.search_vector AS queries_search_vector, queries.tags AS queries_tags, query_results_1.id AS query_results_1_id, query_results_1.retrieved_at AS query_results_1_retrieved_at 
+[32mpostgres_1            |[0m 	FROM queries LEFT OUTER JOIN query_results AS query_results_1 ON query_results_1.id = queries.latest_query_data_id 
+[32mpostgres_1            |[0m 	WHERE queries.schedule IS NOT NULL ORDER BY queries.id
+[35mworker_1              |[0m [2020-07-24 13:35:52,186][PID:12][INFO][ForkPoolWorker-3] task_name=redash.tasks.refresh_queries task_id=cc0b9e3c-e16e-4a0c-bf07-e6451619d15d Refreshing queries...
+[33mredis_1               |[0m 1:M 24 Jul 13:31:05.492 # WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lower value of 128.
+[33mredis_1               |[0m 1:M 24 Jul 13:31:05.492 # Server started, Redis version 3.2.12
+[33mredis_1               |[0m 1:M 24 Jul 13:31:05.492 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+[33mredis_1               |[0m 1:M 24 Jul 13:31:05.492 * The server is now ready to accept connections on port 6379
+[33mredis_1               |[0m 1:M 24 Jul 13:36:06.019 * 100 changes in 300 seconds. Saving...
+[33mredis_1               |[0m 1:M 24 Jul 13:36:06.020 * Background saving started by pid 11
+[33mredis_1               |[0m 11:C 24 Jul 13:36:07.433 * DB saved on disk
+[33mredis_1               |[0m 11:C 24 Jul 13:36:07.434 * RDB: 0 MB of memory used by copy-on-write
+[35mworker_1              |[0m [2020-07-24 13:35:52,193][PID:12][ERROR][ForkPoolWorker-3] Task redash.tasks.refresh_queries[cc0b9e3c-e16e-4a0c-bf07-e6451619d15d] raised unexpected: ProgrammingError('(psycopg2.ProgrammingError) relation "queries" does not exist\nLINE 2: FROM queries LEFT OUTER JOIN query_results AS query_results_...\n             ^\n',)
+[35mworker_1              |[0m Traceback (most recent call last):
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/celery/app/trace.py", line 382, in trace_task
+[35mworker_1              |[0m     R = retval = fun(*args, **kwargs)
+[35mworker_1              |[0m   File "/app/redash/worker.py", line 62, in __call__
+[35mworker_1              |[0m     return TaskBase.__call__(self, *args, **kwargs)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/celery/app/trace.py", line 641, in __protected_call__
+[35mworker_1              |[0m     return self.run(*args, **kwargs)
+[35mworker_1              |[0m   File "/app/redash/tasks/queries.py", line 170, in refresh_queries
+[35mworker_1              |[0m     for query in models.Query.outdated_queries():
+[35mworker_1              |[0m   File "/app/redash/models/__init__.py", line 658, in outdated_queries
+[35mworker_1              |[0m     for query in queries:
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/query.py", line 2995, in __iter__
+[35mworker_1              |[0m     return self._execute_and_instances(context)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/query.py", line 3018, in _execute_and_instances
+[35mworker_1              |[0m     result = conn.execute(querycontext.statement, self._params)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 948, in execute
+[35mworker_1              |[0m     return meth(self, multiparams, params)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/sql/elements.py", line 269, in _execute_on_connection
+[35mworker_1              |[0m     return connection._execute_clauseelement(self, multiparams, params)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1060, in _execute_clauseelement
+[35mworker_1              |[0m     compiled_sql, distilled_params
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1200, in _execute_context
+[35mworker_1              |[0m     context)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1413, in _handle_dbapi_exception
+[35mworker_1              |[0m     exc_info
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/util/compat.py", line 265, in raise_from_cause
+[35mworker_1              |[0m     reraise(type(exception), exception, tb=exc_tb, cause=cause)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1193, in _execute_context
+[35mworker_1              |[0m     context)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/default.py", line 509, in do_execute
+[35mworker_1              |[0m     cursor.execute(statement, parameters)
+[35mworker_1              |[0m ProgrammingError: (psycopg2.ProgrammingError) relation "queries" does not exist
+[35mworker_1              |[0m LINE 2: FROM queries LEFT OUTER JOIN query_results AS query_results_...
+[35mworker_1              |[0m              ^
+[35mworker_1              |[0m  [SQL: 'SELECT queries.query AS queries_query, queries.updated_at AS queries_updated_at, queries.created_at AS queries_created_at, queries.id AS queries_id, queries.version AS queries_version, queries.org_id AS queries_org_id, queries.folder_id AS queries_folder_id, queries.data_source_id AS queries_data_source_id, queries.latest_query_data_id AS queries_latest_query_data_id, queries.name AS queries_name, queries.description AS queries_description, queries.query_hash AS queries_query_hash, queries.api_key AS queries_api_key, queries.user_id AS queries_user_id, queries.last_modified_by_id AS queries_last_modified_by_id, queries.is_archived AS queries_is_archived, queries.is_draft AS queries_is_draft, queries.schedule AS queries_schedule, queries.schedule_failures AS queries_schedule_failures, queries.options AS queries_options, queries.search_vector AS queries_search_vector, queries.tags AS queries_tags, query_results_1.id AS query_results_1_id, query_results_1.retrieved_at AS query_results_1_retrieved_at \nFROM queries LEFT OUTER JOIN query_results AS query_results_1 ON query_results_1.id = queries.latest_query_data_id \nWHERE queries.schedule IS NOT NULL ORDER BY queries.id'] (Background on this error at: http://sqlalche.me/e/f405)
+[35mworker_1              |[0m [2020-07-24 13:36:22,134][PID:10][INFO][Beat] Scheduler: Sending due task cleanup_query_results (redash.tasks.cleanup_query_results)
+[35mworker_1              |[0m [2020-07-24 13:36:22,138][PID:1][INFO][MainProcess] Received task: redash.tasks.cleanup_query_results[f97d6797-992d-4a12-9042-e0c89926bbe5]  
+[32mpostgres_1            |[0m ERROR:  relation "queries" does not exist at character 1019
+[32mpostgres_1            |[0m STATEMENT:  SELECT queries.query AS queries_query, queries.updated_at AS queries_updated_at, queries.created_at AS queries_created_at, queries.id AS queries_id, queries.version AS queries_version, queries.org_id AS queries_org_id, queries.folder_id AS queries_folder_id, queries.data_source_id AS queries_data_source_id, queries.latest_query_data_id AS queries_latest_query_data_id, queries.name AS queries_name, queries.description AS queries_description, queries.query_hash AS queries_query_hash, queries.api_key AS queries_api_key, queries.user_id AS queries_user_id, queries.last_modified_by_id AS queries_last_modified_by_id, queries.is_archived AS queries_is_archived, queries.is_draft AS queries_is_draft, queries.schedule AS queries_schedule, queries.schedule_failures AS queries_schedule_failures, queries.options AS queries_options, queries.search_vector AS queries_search_vector, queries.tags AS queries_tags, query_results_1.id AS query_results_1_id, query_results_1.retrieved_at AS query_results_1_retrieved_at 
+[32mpostgres_1            |[0m 	FROM queries LEFT OUTER JOIN query_results AS query_results_1 ON query_results_1.id = queries.latest_query_data_id 
+[32mpostgres_1            |[0m 	WHERE queries.schedule IS NOT NULL ORDER BY queries.id
+[35mworker_1              |[0m [2020-07-24 13:36:22,140][PID:12][INFO][ForkPoolWorker-3] Running query results clean up (removing maximum of 100 unused results, that are 7 days old or more)
+[35mworker_1              |[0m [2020-07-24 13:36:22,172][PID:10][INFO][Beat] Scheduler: Sending due task sync_user_details (redash.tasks.sync_user_details)
+[35mworker_1              |[0m [2020-07-24 13:36:22,177][PID:1][INFO][MainProcess] Received task: redash.tasks.sync_user_details[d772f926-b3fd-4c2a-85a2-20f86de76076]   expires:[2020-07-24 13:37:07.174280+00:00]
+[35mworker_1              |[0m [2020-07-24 13:36:22,181][PID:11][INFO][ForkPoolWorker-2] Task redash.tasks.sync_user_details[d772f926-b3fd-4c2a-85a2-20f86de76076] succeeded in 0.00102937399993s: None
+[35mworker_1              |[0m [2020-07-24 13:36:22,184][PID:10][INFO][Beat] Scheduler: Sending due task refresh_queries (redash.tasks.refresh_queries)
+[35mworker_1              |[0m [2020-07-24 13:36:22,189][PID:1][INFO][MainProcess] Received task: redash.tasks.refresh_queries[682fb3ef-d5dc-4d20-b091-e8ecf36aa232]  
+[32mpostgres_1            |[0m ERROR:  relation "query_results" does not exist at character 13
+[32mpostgres_1            |[0m STATEMENT:  DELETE FROM query_results WHERE query_results.id IN (SELECT query_results.id 
+[32mpostgres_1            |[0m 	FROM query_results LEFT OUTER JOIN queries ON query_results.id = queries.latest_query_data_id 
+[32mpostgres_1            |[0m 	WHERE queries.id IS NULL AND query_results.retrieved_at < '2020-07-17T13:36:22.140862'::timestamp 
+[32mpostgres_1            |[0m 	 LIMIT 100)
+[35mworker_1              |[0m [2020-07-24 13:36:22,192][PID:11][INFO][ForkPoolWorker-2] task_name=redash.tasks.refresh_queries task_id=682fb3ef-d5dc-4d20-b091-e8ecf36aa232 Refreshing queries...
+[35mworker_1              |[0m [2020-07-24 13:36:22,205][PID:11][ERROR][ForkPoolWorker-2] Task redash.tasks.refresh_queries[682fb3ef-d5dc-4d20-b091-e8ecf36aa232] raised unexpected: ProgrammingError('(psycopg2.ProgrammingError) relation "queries" does not exist\nLINE 2: FROM queries LEFT OUTER JOIN query_results AS query_results_...\n             ^\n',)
+[35mworker_1              |[0m Traceback (most recent call last):
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/celery/app/trace.py", line 382, in trace_task
+[35mworker_1              |[0m     R = retval = fun(*args, **kwargs)
+[35mworker_1              |[0m   File "/app/redash/worker.py", line 62, in __call__
+[35mworker_1              |[0m     return TaskBase.__call__(self, *args, **kwargs)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/celery/app/trace.py", line 641, in __protected_call__
+[35mworker_1              |[0m     return self.run(*args, **kwargs)
+[35mworker_1              |[0m   File "/app/redash/tasks/queries.py", line 170, in refresh_queries
+[35mworker_1              |[0m     for query in models.Query.outdated_queries():
+[35mworker_1              |[0m   File "/app/redash/models/__init__.py", line 658, in outdated_queries
+[35mworker_1              |[0m     for query in queries:
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/query.py", line 2995, in __iter__
+[35mworker_1              |[0m     return self._execute_and_instances(context)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/query.py", line 3018, in _execute_and_instances
+[35mworker_1              |[0m     result = conn.execute(querycontext.statement, self._params)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 948, in execute
+[35mworker_1              |[0m     return meth(self, multiparams, params)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/sql/elements.py", line 269, in _execute_on_connection
+[35mworker_1              |[0m     return connection._execute_clauseelement(self, multiparams, params)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1060, in _execute_clauseelement
+[35mworker_1              |[0m     compiled_sql, distilled_params
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1200, in _execute_context
+[35mworker_1              |[0m     context)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1413, in _handle_dbapi_exception
+[35mworker_1              |[0m     exc_info
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/util/compat.py", line 265, in raise_from_cause
+[35mworker_1              |[0m     reraise(type(exception), exception, tb=exc_tb, cause=cause)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1193, in _execute_context
+[35mworker_1              |[0m     context)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/default.py", line 509, in do_execute
+[35mworker_1              |[0m     cursor.execute(statement, parameters)
+[35mworker_1              |[0m ProgrammingError: (psycopg2.ProgrammingError) relation "queries" does not exist
+[35mworker_1              |[0m LINE 2: FROM queries LEFT OUTER JOIN query_results AS query_results_...
+[35mworker_1              |[0m              ^
+[35mworker_1              |[0m  [SQL: 'SELECT queries.query AS queries_query, queries.updated_at AS queries_updated_at, queries.created_at AS queries_created_at, queries.id AS queries_id, queries.version AS queries_version, queries.org_id AS queries_org_id, queries.folder_id AS queries_folder_id, queries.data_source_id AS queries_data_source_id, queries.latest_query_data_id AS queries_latest_query_data_id, queries.name AS queries_name, queries.description AS queries_description, queries.query_hash AS queries_query_hash, queries.api_key AS queries_api_key, queries.user_id AS queries_user_id, queries.last_modified_by_id AS queries_last_modified_by_id, queries.is_archived AS queries_is_archived, queries.is_draft AS queries_is_draft, queries.schedule AS queries_schedule, queries.schedule_failures AS queries_schedule_failures, queries.options AS queries_options, queries.search_vector AS queries_search_vector, queries.tags AS queries_tags, query_results_1.id AS query_results_1_id, query_results_1.retrieved_at AS query_results_1_retrieved_at \nFROM queries LEFT OUTER JOIN query_results AS query_results_1 ON query_results_1.id = queries.latest_query_data_id \nWHERE queries.schedule IS NOT NULL ORDER BY queries.id'] (Background on this error at: http://sqlalche.me/e/f405)
+[35mworker_1              |[0m [2020-07-24 13:36:22,245][PID:12][ERROR][ForkPoolWorker-3] Task redash.tasks.cleanup_query_results[f97d6797-992d-4a12-9042-e0c89926bbe5] raised unexpected: ProgrammingError('(psycopg2.ProgrammingError) relation "query_results" does not exist\nLINE 1: DELETE FROM query_results WHERE query_results.id IN (SELECT ...\n                    ^\n',)
+[35mworker_1              |[0m Traceback (most recent call last):
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/celery/app/trace.py", line 382, in trace_task
+[35mworker_1              |[0m     R = retval = fun(*args, **kwargs)
+[35mworker_1              |[0m   File "/app/redash/worker.py", line 62, in __call__
+[35mworker_1              |[0m     return TaskBase.__call__(self, *args, **kwargs)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/celery/app/trace.py", line 641, in __protected_call__
+[35mworker_1              |[0m     return self.run(*args, **kwargs)
+[35mworker_1              |[0m   File "/app/redash/tasks/queries.py", line 228, in cleanup_query_results
+[35mworker_1              |[0m     ).delete(synchronize_session=False)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/query.py", line 3353, in delete
+[35mworker_1              |[0m     delete_op.exec_()
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/persistence.py", line 1329, in exec_
+[35mworker_1              |[0m     self._do_exec()
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/persistence.py", line 1521, in _do_exec
+[35mworker_1              |[0m     self._execute_stmt(delete_stmt)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/persistence.py", line 1336, in _execute_stmt
+[35mworker_1              |[0m     mapper=self.mapper)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/session.py", line 1176, in execute
+[35mworker_1              |[0m     bind, close_with_result=True).execute(clause, params or {})
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 948, in execute
+[35mworker_1              |[0m     return meth(self, multiparams, params)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/sql/elements.py", line 269, in _execute_on_connection
+[35mworker_1              |[0m     return connection._execute_clauseelement(self, multiparams, params)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1060, in _execute_clauseelement
+[35mworker_1              |[0m     compiled_sql, distilled_params
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1200, in _execute_context
+[35mworker_1              |[0m     context)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1413, in _handle_dbapi_exception
+[35mworker_1              |[0m     exc_info
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/util/compat.py", line 265, in raise_from_cause
+[35mworker_1              |[0m     reraise(type(exception), exception, tb=exc_tb, cause=cause)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1193, in _execute_context
+[35mworker_1              |[0m     context)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/default.py", line 509, in do_execute
+[35mworker_1              |[0m     cursor.execute(statement, parameters)
+[35mworker_1              |[0m ProgrammingError: (psycopg2.ProgrammingError) relation "query_results" does not exist
+[35mworker_1              |[0m LINE 1: DELETE FROM query_results WHERE query_results.id IN (SELECT ...
+[35mworker_1              |[0m                     ^
+[35mworker_1              |[0m  [SQL: 'DELETE FROM query_results WHERE query_results.id IN (SELECT query_results.id \nFROM query_results LEFT OUTER JOIN queries ON query_results.id = queries.latest_query_data_id \nWHERE queries.id IS NULL AND query_results.retrieved_at < %(retrieved_at_1)s \n LIMIT %(param_1)s)'] [parameters: {'retrieved_at_1': datetime.datetime(2020, 7, 17, 13, 36, 22, 140862), 'param_1': 100}] (Background on this error at: http://sqlalche.me/e/f405)
+[35mworker_1              |[0m [2020-07-24 13:36:52,207][PID:10][INFO][Beat] Scheduler: Sending due task refresh_queries (redash.tasks.refresh_queries)
+[35mworker_1              |[0m [2020-07-24 13:36:52,214][PID:1][INFO][MainProcess] Received task: redash.tasks.refresh_queries[84940a17-1c83-452c-bb5c-595096da4ac6]  
+[32mpostgres_1            |[0m ERROR:  relation "queries" does not exist at character 1019
+[32mpostgres_1            |[0m STATEMENT:  SELECT queries.query AS queries_query, queries.updated_at AS queries_updated_at, queries.created_at AS queries_created_at, queries.id AS queries_id, queries.version AS queries_version, queries.org_id AS queries_org_id, queries.folder_id AS queries_folder_id, queries.data_source_id AS queries_data_source_id, queries.latest_query_data_id AS queries_latest_query_data_id, queries.name AS queries_name, queries.description AS queries_description, queries.query_hash AS queries_query_hash, queries.api_key AS queries_api_key, queries.user_id AS queries_user_id, queries.last_modified_by_id AS queries_last_modified_by_id, queries.is_archived AS queries_is_archived, queries.is_draft AS queries_is_draft, queries.schedule AS queries_schedule, queries.schedule_failures AS queries_schedule_failures, queries.options AS queries_options, queries.search_vector AS queries_search_vector, queries.tags AS queries_tags, query_results_1.id AS query_results_1_id, query_results_1.retrieved_at AS query_results_1_retrieved_at 
+[32mpostgres_1            |[0m 	FROM queries LEFT OUTER JOIN query_results AS query_results_1 ON query_results_1.id = queries.latest_query_data_id 
+[32mpostgres_1            |[0m 	WHERE queries.schedule IS NOT NULL ORDER BY queries.id
+[35mworker_1              |[0m [2020-07-24 13:36:52,218][PID:15][INFO][ForkPoolWorker-4] task_name=redash.tasks.refresh_queries task_id=84940a17-1c83-452c-bb5c-595096da4ac6 Refreshing queries...
+[35mworker_1              |[0m [2020-07-24 13:36:52,495][PID:15][ERROR][ForkPoolWorker-4] Task redash.tasks.refresh_queries[84940a17-1c83-452c-bb5c-595096da4ac6] raised unexpected: ProgrammingError('(psycopg2.ProgrammingError) relation "queries" does not exist\nLINE 2: FROM queries LEFT OUTER JOIN query_results AS query_results_...\n             ^\n',)
+[35mworker_1              |[0m Traceback (most recent call last):
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/celery/app/trace.py", line 382, in trace_task
+[35mworker_1              |[0m     R = retval = fun(*args, **kwargs)
+[35mworker_1              |[0m   File "/app/redash/worker.py", line 62, in __call__
+[35mworker_1              |[0m     return TaskBase.__call__(self, *args, **kwargs)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/celery/app/trace.py", line 641, in __protected_call__
+[35mworker_1              |[0m     return self.run(*args, **kwargs)
+[35mworker_1              |[0m   File "/app/redash/tasks/queries.py", line 170, in refresh_queries
+[35mworker_1              |[0m     for query in models.Query.outdated_queries():
+[35mworker_1              |[0m   File "/app/redash/models/__init__.py", line 658, in outdated_queries
+[35mworker_1              |[0m     for query in queries:
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/query.py", line 2995, in __iter__
+[35mworker_1              |[0m     return self._execute_and_instances(context)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/query.py", line 3018, in _execute_and_instances
+[35mworker_1              |[0m     result = conn.execute(querycontext.statement, self._params)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 948, in execute
+[35mworker_1              |[0m     return meth(self, multiparams, params)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/sql/elements.py", line 269, in _execute_on_connection
+[35mworker_1              |[0m     return connection._execute_clauseelement(self, multiparams, params)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1060, in _execute_clauseelement
+[35mworker_1              |[0m     compiled_sql, distilled_params
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1200, in _execute_context
+[35mworker_1              |[0m     context)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1413, in _handle_dbapi_exception
+[35mworker_1              |[0m     exc_info
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/util/compat.py", line 265, in raise_from_cause
+[35mworker_1              |[0m     reraise(type(exception), exception, tb=exc_tb, cause=cause)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1193, in _execute_context
+[35mworker_1              |[0m     context)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/default.py", line 509, in do_execute
+[35mworker_1              |[0m     cursor.execute(statement, parameters)
+[35mworker_1              |[0m ProgrammingError: (psycopg2.ProgrammingError) relation "queries" does not exist
+[35mworker_1              |[0m LINE 2: FROM queries LEFT OUTER JOIN query_results AS query_results_...
+[35mworker_1              |[0m              ^
+[35mworker_1              |[0m  [SQL: 'SELECT queries.query AS queries_query, queries.updated_at AS queries_updated_at, queries.created_at AS queries_created_at, queries.id AS queries_id, queries.version AS queries_version, queries.org_id AS queries_org_id, queries.folder_id AS queries_folder_id, queries.data_source_id AS queries_data_source_id, queries.latest_query_data_id AS queries_latest_query_data_id, queries.name AS queries_name, queries.description AS queries_description, queries.query_hash AS queries_query_hash, queries.api_key AS queries_api_key, queries.user_id AS queries_user_id, queries.last_modified_by_id AS queries_last_modified_by_id, queries.is_archived AS queries_is_archived, queries.is_draft AS queries_is_draft, queries.schedule AS queries_schedule, queries.schedule_failures AS queries_schedule_failures, queries.options AS queries_options, queries.search_vector AS queries_search_vector, queries.tags AS queries_tags, query_results_1.id AS query_results_1_id, query_results_1.retrieved_at AS query_results_1_retrieved_at \nFROM queries LEFT OUTER JOIN query_results AS query_results_1 ON query_results_1.id = queries.latest_query_data_id \nWHERE queries.schedule IS NOT NULL ORDER BY queries.id'] (Background on this error at: http://sqlalche.me/e/f405)
+[35mworker_1              |[0m [2020-07-24 13:37:22,183][PID:10][INFO][Beat] Scheduler: Sending due task sync_user_details (redash.tasks.sync_user_details)
+[35mworker_1              |[0m [2020-07-24 13:37:22,186][PID:1][INFO][MainProcess] Received task: redash.tasks.sync_user_details[f9eeff65-6081-4e63-997d-11873c249bbf]   expires:[2020-07-24 13:38:07.184743+00:00]
+[35mworker_1              |[0m [2020-07-24 13:37:22,190][PID:15][INFO][ForkPoolWorker-4] Task redash.tasks.sync_user_details[f9eeff65-6081-4e63-997d-11873c249bbf] succeeded in 0.0019324509999s: None
+[35mworker_1              |[0m [2020-07-24 13:37:22,208][PID:10][INFO][Beat] Scheduler: Sending due task refresh_queries (redash.tasks.refresh_queries)
+[35mworker_1              |[0m [2020-07-24 13:37:22,210][PID:1][INFO][MainProcess] Received task: redash.tasks.refresh_queries[0a73f944-609d-4f75-b1c9-2f2358ee5e60]  
+[32mpostgres_1            |[0m ERROR:  relation "queries" does not exist at character 1019
+[32mpostgres_1            |[0m STATEMENT:  SELECT queries.query AS queries_query, queries.updated_at AS queries_updated_at, queries.created_at AS queries_created_at, queries.id AS queries_id, queries.version AS queries_version, queries.org_id AS queries_org_id, queries.folder_id AS queries_folder_id, queries.data_source_id AS queries_data_source_id, queries.latest_query_data_id AS queries_latest_query_data_id, queries.name AS queries_name, queries.description AS queries_description, queries.query_hash AS queries_query_hash, queries.api_key AS queries_api_key, queries.user_id AS queries_user_id, queries.last_modified_by_id AS queries_last_modified_by_id, queries.is_archived AS queries_is_archived, queries.is_draft AS queries_is_draft, queries.schedule AS queries_schedule, queries.schedule_failures AS queries_schedule_failures, queries.options AS queries_options, queries.search_vector AS queries_search_vector, queries.tags AS queries_tags, query_results_1.id AS query_results_1_id, query_results_1.retrieved_at AS query_results_1_retrieved_at 
+[32mpostgres_1            |[0m 	FROM queries LEFT OUTER JOIN query_results AS query_results_1 ON query_results_1.id = queries.latest_query_data_id 
+[32mpostgres_1            |[0m 	WHERE queries.schedule IS NOT NULL ORDER BY queries.id
+[35mworker_1              |[0m [2020-07-24 13:37:22,212][PID:15][INFO][ForkPoolWorker-4] task_name=redash.tasks.refresh_queries task_id=0a73f944-609d-4f75-b1c9-2f2358ee5e60 Refreshing queries...
+[35mworker_1              |[0m [2020-07-24 13:37:22,222][PID:15][ERROR][ForkPoolWorker-4] Task redash.tasks.refresh_queries[0a73f944-609d-4f75-b1c9-2f2358ee5e60] raised unexpected: ProgrammingError('(psycopg2.ProgrammingError) relation "queries" does not exist\nLINE 2: FROM queries LEFT OUTER JOIN query_results AS query_results_...\n             ^\n',)
+[35mworker_1              |[0m Traceback (most recent call last):
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/celery/app/trace.py", line 382, in trace_task
+[35mworker_1              |[0m     R = retval = fun(*args, **kwargs)
+[35mworker_1              |[0m   File "/app/redash/worker.py", line 62, in __call__
+[35mworker_1              |[0m     return TaskBase.__call__(self, *args, **kwargs)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/celery/app/trace.py", line 641, in __protected_call__
+[35mworker_1              |[0m     return self.run(*args, **kwargs)
+[35mworker_1              |[0m   File "/app/redash/tasks/queries.py", line 170, in refresh_queries
+[35mworker_1              |[0m     for query in models.Query.outdated_queries():
+[35mworker_1              |[0m   File "/app/redash/models/__init__.py", line 658, in outdated_queries
+[35mworker_1              |[0m     for query in queries:
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/query.py", line 2995, in __iter__
+[35mworker_1              |[0m     return self._execute_and_instances(context)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/query.py", line 3018, in _execute_and_instances
+[35mworker_1              |[0m     result = conn.execute(querycontext.statement, self._params)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 948, in execute
+[35mworker_1              |[0m     return meth(self, multiparams, params)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/sql/elements.py", line 269, in _execute_on_connection
+[35mworker_1              |[0m     return connection._execute_clauseelement(self, multiparams, params)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1060, in _execute_clauseelement
+[35mworker_1              |[0m     compiled_sql, distilled_params
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1200, in _execute_context
+[35mworker_1              |[0m     context)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1413, in _handle_dbapi_exception
+[35mworker_1              |[0m     exc_info
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/util/compat.py", line 265, in raise_from_cause
+[35mworker_1              |[0m     reraise(type(exception), exception, tb=exc_tb, cause=cause)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1193, in _execute_context
+[35mworker_1              |[0m     context)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/default.py", line 509, in do_execute
+[35mworker_1              |[0m     cursor.execute(statement, parameters)
+[35mworker_1              |[0m ProgrammingError: (psycopg2.ProgrammingError) relation "queries" does not exist
+[35mworker_1              |[0m LINE 2: FROM queries LEFT OUTER JOIN query_results AS query_results_...
+[35mworker_1              |[0m              ^
+[35mworker_1              |[0m  [SQL: 'SELECT queries.query AS queries_query, queries.updated_at AS queries_updated_at, queries.created_at AS queries_created_at, queries.id AS queries_id, queries.version AS queries_version, queries.org_id AS queries_org_id, queries.folder_id AS queries_folder_id, queries.data_source_id AS queries_data_source_id, queries.latest_query_data_id AS queries_latest_query_data_id, queries.name AS queries_name, queries.description AS queries_description, queries.query_hash AS queries_query_hash, queries.api_key AS queries_api_key, queries.user_id AS queries_user_id, queries.last_modified_by_id AS queries_last_modified_by_id, queries.is_archived AS queries_is_archived, queries.is_draft AS queries_is_draft, queries.schedule AS queries_schedule, queries.schedule_failures AS queries_schedule_failures, queries.options AS queries_options, queries.search_vector AS queries_search_vector, queries.tags AS queries_tags, query_results_1.id AS query_results_1_id, query_results_1.retrieved_at AS query_results_1_retrieved_at \nFROM queries LEFT OUTER JOIN query_results AS query_results_1 ON query_results_1.id = queries.latest_query_data_id \nWHERE queries.schedule IS NOT NULL ORDER BY queries.id'] (Background on this error at: http://sqlalche.me/e/f405)
+[35mworker_1              |[0m [2020-07-24 13:37:52,209][PID:10][INFO][Beat] Scheduler: Sending due task refresh_queries (redash.tasks.refresh_queries)
+[35mworker_1              |[0m [2020-07-24 13:37:52,212][PID:1][INFO][MainProcess] Received task: redash.tasks.refresh_queries[b2f71e97-1f05-43ad-8bb5-4ec35aa6763c]  
+[32mpostgres_1            |[0m ERROR:  relation "queries" does not exist at character 1019
+[32mpostgres_1            |[0m STATEMENT:  SELECT queries.query AS queries_query, queries.updated_at AS queries_updated_at, queries.created_at AS queries_created_at, queries.id AS queries_id, queries.version AS queries_version, queries.org_id AS queries_org_id, queries.folder_id AS queries_folder_id, queries.data_source_id AS queries_data_source_id, queries.latest_query_data_id AS queries_latest_query_data_id, queries.name AS queries_name, queries.description AS queries_description, queries.query_hash AS queries_query_hash, queries.api_key AS queries_api_key, queries.user_id AS queries_user_id, queries.last_modified_by_id AS queries_last_modified_by_id, queries.is_archived AS queries_is_archived, queries.is_draft AS queries_is_draft, queries.schedule AS queries_schedule, queries.schedule_failures AS queries_schedule_failures, queries.options AS queries_options, queries.search_vector AS queries_search_vector, queries.tags AS queries_tags, query_results_1.id AS query_results_1_id, query_results_1.retrieved_at AS query_results_1_retrieved_at 
+[32mpostgres_1            |[0m 	FROM queries LEFT OUTER JOIN query_results AS query_results_1 ON query_results_1.id = queries.latest_query_data_id 
+[32mpostgres_1            |[0m 	WHERE queries.schedule IS NOT NULL ORDER BY queries.id
+[35mworker_1              |[0m [2020-07-24 13:37:52,214][PID:15][INFO][ForkPoolWorker-4] task_name=redash.tasks.refresh_queries task_id=b2f71e97-1f05-43ad-8bb5-4ec35aa6763c Refreshing queries...
+[35mworker_1              |[0m [2020-07-24 13:37:52,222][PID:15][ERROR][ForkPoolWorker-4] Task redash.tasks.refresh_queries[b2f71e97-1f05-43ad-8bb5-4ec35aa6763c] raised unexpected: ProgrammingError('(psycopg2.ProgrammingError) relation "queries" does not exist\nLINE 2: FROM queries LEFT OUTER JOIN query_results AS query_results_...\n             ^\n',)
+[35mworker_1              |[0m Traceback (most recent call last):
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/celery/app/trace.py", line 382, in trace_task
+[35mworker_1              |[0m     R = retval = fun(*args, **kwargs)
+[35mworker_1              |[0m   File "/app/redash/worker.py", line 62, in __call__
+[35mworker_1              |[0m     return TaskBase.__call__(self, *args, **kwargs)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/celery/app/trace.py", line 641, in __protected_call__
+[35mworker_1              |[0m     return self.run(*args, **kwargs)
+[35mworker_1              |[0m   File "/app/redash/tasks/queries.py", line 170, in refresh_queries
+[35mworker_1              |[0m     for query in models.Query.outdated_queries():
+[35mworker_1              |[0m   File "/app/redash/models/__init__.py", line 658, in outdated_queries
+[35mworker_1              |[0m     for query in queries:
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/query.py", line 2995, in __iter__
+[35mworker_1              |[0m     return self._execute_and_instances(context)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/query.py", line 3018, in _execute_and_instances
+[35mworker_1              |[0m     result = conn.execute(querycontext.statement, self._params)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 948, in execute
+[35mworker_1              |[0m     return meth(self, multiparams, params)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/sql/elements.py", line 269, in _execute_on_connection
+[35mworker_1              |[0m     return connection._execute_clauseelement(self, multiparams, params)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1060, in _execute_clauseelement
+[35mworker_1              |[0m     compiled_sql, distilled_params
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1200, in _execute_context
+[35mworker_1              |[0m     context)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1413, in _handle_dbapi_exception
+[35mworker_1              |[0m     exc_info
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/util/compat.py", line 265, in raise_from_cause
+[35mworker_1              |[0m     reraise(type(exception), exception, tb=exc_tb, cause=cause)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1193, in _execute_context
+[35mworker_1              |[0m     context)
+[35mworker_1              |[0m   File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/default.py", line 509, in do_execute
+[35mworker_1              |[0m     cursor.execute(statement, parameters)
+[35mworker_1              |[0m ProgrammingError: (psycopg2.ProgrammingError) relation "queries" does not exist
+[35mworker_1              |[0m LINE 2: FROM queries LEFT OUTER JOIN query_results AS query_results_...
+[35mworker_1              |[0m              ^
+[35mworker_1              |[0m  [SQL: 'SELECT queries.query AS queries_query, queries.updated_at AS queries_updated_at, queries.created_at AS queries_created_at, queries.id AS queries_id, queries.version AS queries_version, queries.org_id AS queries_org_id, queries.folder_id AS queries_folder_id, queries.data_source_id AS queries_data_source_id, queries.latest_query_data_id AS queries_latest_query_data_id, queries.name AS queries_name, queries.description AS queries_description, queries.query_hash AS queries_query_hash, queries.api_key AS queries_api_key, queries.user_id AS queries_user_id, queries.last_modified_by_id AS queries_last_modified_by_id, queries.is_archived AS queries_is_archived, queries.is_draft AS queries_is_draft, queries.schedule AS queries_schedule, queries.schedule_failures AS queries_schedule_failures, queries.options AS queries_options, queries.search_vector AS queries_search_vector, queries.tags AS queries_tags, query_results_1.id AS query_results_1_id, query_results_1.retrieved_at AS query_results_1_retrieved_at \nFROM queries LEFT OUTER JOIN query_results AS query_results_1 ON query_results_1.id = queries.latest_query_data_id \nWHERE queries.schedule IS NOT NULL ORDER BY queries.id'] (Background on this error at: http://sqlalche.me/e/f405)
+[35mworker_1              |[0m [2020-07-24 13:38:22,217][PID:10][INFO][Beat] Scheduler: Sending due task refresh_queries (redash.tasks.refresh_queries)
+[35mworker_1              |[0m [2020-07-24 13:38:22,219][PID:10][INFO][Beat] Scheduler: Sending due task sync_user_details (redash.tasks.sync_user_details)
+[35mworker_1              |[0m [2020-07-24 13:38:22,222][PID:1][INFO][MainProcess] Received task: redash.tasks.refresh_queries[ac2899c5-d430-4600-9230-2dbc9f077085]  
+[35mworker_1              |[0m [2020-07-24 13:38:22,224][PID:1][INFO][MainProcess] Received task: redash.tasks.sync_user_details[3a721f17-8d52-4341-a323-bb1911e25f3b]   expires:[2020-07-24 13:39:07.220540+00:00]
+[35mworker_1              |[0m [2020-07-24 13:38:22,225][PID:15][INFO][ForkPoolWorker-4] task_name=redash.tasks.refresh_queries task_id=ac2899c5-d430-4600-9230-2dbc9f077085 Refreshing queries...
+[35mworker_1              |[0m [2020-07-24 13:38:22,229][PID:11][INFO][ForkPoolWorker-2] Task redash.tasks.sync_user_details[3a721f17-8d52-4341-a323-bb1911e25f3b] succeeded in 0.000870245999977s: None
+[35mworker_1              |[0m [2020-07-24 13:38:22,237][PID:15][INFO][ForkPoolWorker-4] task_name=redash.tasks.refresh_queries task_id=ac2899c5-d430-4600-9230-2dbc9f077085 Done refreshing queries. Found 0 outdated queries: []
+[35mworker_1              |[0m [2020-07-24 13:38:22,241][PID:15][INFO][ForkPoolWorker-4] Task redash.tasks.refresh_queries[ac2899c5-d430-4600-9230-2dbc9f077085] succeeded in 0.0157835290001s: None
+[35mworker_1              |[0m [2020-07-24 13:38:52,217][PID:10][INFO][Beat] Scheduler: Sending due task refresh_queries (redash.tasks.refresh_queries)
+[35mworker_1              |[0m [2020-07-24 13:38:52,219][PID:1][INFO][MainProcess] Received task: redash.tasks.refresh_queries[e0236d38-adb3-4a3e-b0a6-059e9531b9d3]  
+[35mworker_1              |[0m [2020-07-24 13:38:52,221][PID:15][INFO][ForkPoolWorker-4] task_name=redash.tasks.refresh_queries task_id=e0236d38-adb3-4a3e-b0a6-059e9531b9d3 Refreshing queries...
+[35mworker_1              |[0m [2020-07-24 13:38:52,227][PID:15][INFO][ForkPoolWorker-4] task_name=redash.tasks.refresh_queries task_id=e0236d38-adb3-4a3e-b0a6-059e9531b9d3 Done refreshing queries. Found 0 outdated queries: []
+[35mworker_1              |[0m [2020-07-24 13:38:52,229][PID:15][INFO][ForkPoolWorker-4] Task redash.tasks.refresh_queries[e0236d38-adb3-4a3e-b0a6-059e9531b9d3] succeeded in 0.00846534799985s: None
+[35mworker_1              |[0m [2020-07-24 13:39:22,235][PID:10][INFO][Beat] Scheduler: Sending due task sync_user_details (redash.tasks.sync_user_details)
+[35mworker_1              |[0m [2020-07-24 13:39:22,237][PID:10][INFO][Beat] Scheduler: Sending due task refresh_queries (redash.tasks.refresh_queries)
+[35mworker_1              |[0m [2020-07-24 13:39:22,240][PID:1][INFO][MainProcess] Received task: redash.tasks.sync_user_details[9928b5b8-f028-484f-b8f9-2be51ffd8a9b]   expires:[2020-07-24 13:40:07.236219+00:00]
+[35mworker_1              |[0m [2020-07-24 13:39:22,241][PID:1][INFO][MainProcess] Received task: redash.tasks.refresh_queries[8543d4cc-ed72-44c2-9080-d9f1e37b84ba]  
+[35mworker_1              |[0m [2020-07-24 13:39:22,243][PID:15][INFO][ForkPoolWorker-4] Task redash.tasks.sync_user_details[9928b5b8-f028-484f-b8f9-2be51ffd8a9b] succeeded in 0.000662164000005s: None
+[35mworker_1              |[0m [2020-07-24 13:39:22,244][PID:11][INFO][ForkPoolWorker-2] task_name=redash.tasks.refresh_queries task_id=8543d4cc-ed72-44c2-9080-d9f1e37b84ba Refreshing queries...
+[35mworker_1              |[0m [2020-07-24 13:39:22,255][PID:11][INFO][ForkPoolWorker-2] task_name=redash.tasks.refresh_queries task_id=8543d4cc-ed72-44c2-9080-d9f1e37b84ba Done refreshing queries. Found 0 outdated queries: []
+[35mworker_1              |[0m [2020-07-24 13:39:22,257][PID:11][INFO][ForkPoolWorker-2] Task redash.tasks.refresh_queries[8543d4cc-ed72-44c2-9080-d9f1e37b84ba] succeeded in 0.0136430059999s: None
+[35mworker_1              |[0m [2020-07-24 13:39:52,237][PID:10][INFO][Beat] Scheduler: Sending due task refresh_queries (redash.tasks.refresh_queries)
+[35mworker_1              |[0m [2020-07-24 13:39:52,239][PID:1][INFO][MainProcess] Received task: redash.tasks.refresh_queries[90c01d3b-2375-4973-a868-c6aa2a69aef5]  
+[35mworker_1              |[0m [2020-07-24 13:39:52,241][PID:15][INFO][ForkPoolWorker-4] task_name=redash.tasks.refresh_queries task_id=90c01d3b-2375-4973-a868-c6aa2a69aef5 Refreshing queries...
+[35mworker_1              |[0m [2020-07-24 13:39:52,248][PID:15][INFO][ForkPoolWorker-4] task_name=redash.tasks.refresh_queries task_id=90c01d3b-2375-4973-a868-c6aa2a69aef5 Done refreshing queries. Found 0 outdated queries: []
+[35mworker_1              |[0m [2020-07-24 13:39:52,251][PID:15][INFO][ForkPoolWorker-4] Task redash.tasks.refresh_queries[90c01d3b-2375-4973-a868-c6aa2a69aef5] succeeded in 0.010124399s: None
+[35mworker_1              |[0m [2020-07-24 13:40:22,248][PID:10][INFO][Beat] Scheduler: Sending due task sync_user_details (redash.tasks.sync_user_details)
+[35mworker_1              |[0m [2020-07-24 13:40:22,250][PID:10][INFO][Beat] Scheduler: Sending due task refresh_queries (redash.tasks.refresh_queries)
+[35mworker_1              |[0m [2020-07-24 13:40:22,253][PID:1][INFO][MainProcess] Received task: redash.tasks.sync_user_details[d22f8a36-b34b-4002-b32b-6211fbcefc03]   expires:[2020-07-24 13:41:07.249390+00:00]
+[35mworker_1              |[0m [2020-07-24 13:40:22,255][PID:1][INFO][MainProcess] Received task: redash.tasks.refresh_queries[b123570d-1e5f-4af4-a6d0-c57ad3c44ca6]  
+[35mworker_1              |[0m [2020-07-24 13:40:22,257][PID:15][INFO][ForkPoolWorker-4] Task redash.tasks.sync_user_details[d22f8a36-b34b-4002-b32b-6211fbcefc03] succeeded in 0.000852444999964s: None
+[35mworker_1              |[0m [2020-07-24 13:40:22,258][PID:11][INFO][ForkPoolWorker-2] task_name=redash.tasks.refresh_queries task_id=b123570d-1e5f-4af4-a6d0-c57ad3c44ca6 Refreshing queries...
+[35mworker_1              |[0m [2020-07-24 13:40:22,264][PID:11][INFO][ForkPoolWorker-2] task_name=redash.tasks.refresh_queries task_id=b123570d-1e5f-4af4-a6d0-c57ad3c44ca6 Done refreshing queries. Found 0 outdated queries: []
+[35mworker_1              |[0m [2020-07-24 13:40:22,267][PID:11][INFO][ForkPoolWorker-2] Task redash.tasks.refresh_queries[b123570d-1e5f-4af4-a6d0-c57ad3c44ca6] succeeded in 0.00909683100008s: None
+[35mworker_1              |[0m [2020-07-24 13:40:52,264][PID:10][INFO][Beat] Scheduler: Sending due task refresh_queries (redash.tasks.refresh_queries)
+[35mworker_1              |[0m [2020-07-24 13:40:52,268][PID:1][INFO][MainProcess] Received task: redash.tasks.refresh_queries[a570ce73-9f01-469b-8242-4d109cf606bf]  
+[35mworker_1              |[0m [2020-07-24 13:40:52,269][PID:15][INFO][ForkPoolWorker-4] task_name=redash.tasks.refresh_queries task_id=a570ce73-9f01-469b-8242-4d109cf606bf Refreshing queries...
+[35mworker_1              |[0m [2020-07-24 13:40:52,275][PID:15][INFO][ForkPoolWorker-4] task_name=redash.tasks.refresh_queries task_id=a570ce73-9f01-469b-8242-4d109cf606bf Done refreshing queries. Found 0 outdated queries: []
+[33mredis_1               |[0m 1:M 24 Jul 13:36:07.531 * Background saving terminated with success
+[33mredis_1               |[0m 1:M 24 Jul 13:41:08.003 * 100 changes in 300 seconds. Saving...
+[33mredis_1               |[0m 1:M 24 Jul 13:41:08.004 * Background saving started by pid 12
+[33mredis_1               |[0m 12:C 24 Jul 13:41:08.007 * DB saved on disk
+[33mredis_1               |[0m 12:C 24 Jul 13:41:08.008 * RDB: 0 MB of memory used by copy-on-write
+[35mworker_1              |[0m [2020-07-24 13:40:52,278][PID:15][INFO][ForkPoolWorker-4] Task redash.tasks.refresh_queries[a570ce73-9f01-469b-8242-4d109cf606bf] succeeded in 0.00819801900002s: None
+[35mworker_1              |[0m [2020-07-24 13:41:22,267][PID:10][INFO][Beat] Scheduler: Sending due task sync_user_details (redash.tasks.sync_user_details)
+[35mworker_1              |[0m [2020-07-24 13:41:22,269][PID:10][INFO][Beat] Scheduler: Sending due task refresh_queries (redash.tasks.refresh_queries)
+[35mworker_1              |[0m [2020-07-24 13:41:22,272][PID:10][INFO][Beat] Scheduler: Sending due task cleanup_query_results (redash.tasks.cleanup_query_results)
+[35mworker_1              |[0m [2020-07-24 13:41:22,273][PID:1][INFO][MainProcess] Received task: redash.tasks.sync_user_details[04c5a76c-cd5f-4b19-83c5-80cb4d047df3]   expires:[2020-07-24 13:42:07.268430+00:00]
+[35mworker_1              |[0m [2020-07-24 13:41:22,277][PID:1][INFO][MainProcess] Received task: redash.tasks.refresh_queries[7edf3f23-8a3c-4965-acc5-2cc8e925a7e7]  
+[35mworker_1              |[0m [2020-07-24 13:41:22,281][PID:11][INFO][ForkPoolWorker-2] task_name=redash.tasks.refresh_queries task_id=7edf3f23-8a3c-4965-acc5-2cc8e925a7e7 Refreshing queries...
+[35mworker_1              |[0m [2020-07-24 13:41:22,290][PID:1][INFO][MainProcess] Received task: redash.tasks.cleanup_query_results[ac637fbe-8286-4918-8b0f-07109f09d5eb]  
+[35mworker_1              |[0m [2020-07-24 13:41:22,291][PID:11][INFO][ForkPoolWorker-2] task_name=redash.tasks.refresh_queries task_id=7edf3f23-8a3c-4965-acc5-2cc8e925a7e7 Done refreshing queries. Found 0 outdated queries: []
+[35mworker_1              |[0m [2020-07-24 13:41:22,295][PID:17][INFO][ForkPoolWorker-5] Task redash.tasks.sync_user_details[04c5a76c-cd5f-4b19-83c5-80cb4d047df3] succeeded in 0.016975152s: None
+[35mworker_1              |[0m [2020-07-24 13:41:22,297][PID:11][INFO][ForkPoolWorker-2] Task redash.tasks.refresh_queries[7edf3f23-8a3c-4965-acc5-2cc8e925a7e7] succeeded in 0.015458739s: None
+[35mworker_1              |[0m [2020-07-24 13:41:25,555][PID:17][INFO][ForkPoolWorker-5] Running query results clean up (removing maximum of 100 unused results, that are 7 days old or more)
+[35mworker_1              |[0m [2020-07-24 13:41:25,837][PID:17][INFO][ForkPoolWorker-5] task_name=redash.tasks.cleanup_query_results task_id=ac637fbe-8286-4918-8b0f-07109f09d5eb Deleted 0 unused query results.
+[35mworker_1              |[0m [2020-07-24 13:41:25,840][PID:17][INFO][ForkPoolWorker-5] Task redash.tasks.cleanup_query_results[ac637fbe-8286-4918-8b0f-07109f09d5eb] succeeded in 0.285272345s: None
+[35mworker_1              |[0m [2020-07-24 13:41:52,291][PID:10][INFO][Beat] Scheduler: Sending due task refresh_queries (redash.tasks.refresh_queries)
+[35mworker_1              |[0m [2020-07-24 13:41:52,294][PID:1][INFO][MainProcess] Received task: redash.tasks.refresh_queries[eedbc704-b671-47dc-8134-f49cc2c375bb]  
+[35mworker_1              |[0m [2020-07-24 13:41:52,297][PID:19][INFO][ForkPoolWorker-6] task_name=redash.tasks.refresh_queries task_id=eedbc704-b671-47dc-8134-f49cc2c375bb Refreshing queries...
+[35mworker_1              |[0m [2020-07-24 13:41:52,447][PID:19][INFO][ForkPoolWorker-6] task_name=redash.tasks.refresh_queries task_id=eedbc704-b671-47dc-8134-f49cc2c375bb Done refreshing queries. Found 0 outdated queries: []
+[35mworker_1              |[0m [2020-07-24 13:41:52,450][PID:19][INFO][ForkPoolWorker-6] Task redash.tasks.refresh_queries[eedbc704-b671-47dc-8134-f49cc2c375bb] succeeded in 0.153890757s: None
+[35mworker_1              |[0m [2020-07-24 13:42:22,299][PID:10][INFO][Beat] Scheduler: Sending due task refresh_queries (redash.tasks.refresh_queries)
+[35mworker_1              |[0m [2020-07-24 13:42:22,301][PID:10][INFO][Beat] Scheduler: Sending due task sync_user_details (redash.tasks.sync_user_details)
+[35mworker_1              |[0m [2020-07-24 13:42:22,304][PID:1][INFO][MainProcess] Received task: redash.tasks.refresh_queries[88130226-dfdc-4b93-9f47-d70466d89def]  
+[35mworker_1              |[0m [2020-07-24 13:42:22,306][PID:1][INFO][MainProcess] Received task: redash.tasks.sync_user_details[7761a22b-c3fb-4ba9-8020-f954a85934bf]   expires:[2020-07-24 13:43:07.302540+00:00]
+[35mworker_1              |[0m [2020-07-24 13:42:22,307][PID:19][INFO][ForkPoolWorker-6] task_name=redash.tasks.refresh_queries task_id=88130226-dfdc-4b93-9f47-d70466d89def Refreshing queries...
+[35mworker_1              |[0m [2020-07-24 13:42:22,312][PID:17][INFO][ForkPoolWorker-5] Task redash.tasks.sync_user_details[7761a22b-c3fb-4ba9-8020-f954a85934bf] succeeded in 0.000805204000017s: None
+[35mworker_1              |[0m [2020-07-24 13:42:22,315][PID:19][INFO][ForkPoolWorker-6] task_name=redash.tasks.refresh_queries task_id=88130226-dfdc-4b93-9f47-d70466d89def Done refreshing queries. Found 0 outdated queries: []
+[35mworker_1              |[0m [2020-07-24 13:42:22,318][PID:19][INFO][ForkPoolWorker-6] Task redash.tasks.refresh_queries[88130226-dfdc-4b93-9f47-d70466d89def] succeeded in 0.011343528s: None
+[35mworker_1              |[0m [2020-07-24 13:42:52,322][PID:10][INFO][Beat] Scheduler: Sending due task refresh_queries (redash.tasks.refresh_queries)
+[35mworker_1              |[0m [2020-07-24 13:42:52,324][PID:1][INFO][MainProcess] Received task: redash.tasks.refresh_queries[1216725f-8c91-47fc-a4a4-e502172ce66e]  
+[35mworker_1              |[0m [2020-07-24 13:42:52,326][PID:19][INFO][ForkPoolWorker-6] task_name=redash.tasks.refresh_queries task_id=1216725f-8c91-47fc-a4a4-e502172ce66e Refreshing queries...
+[35mworker_1              |[0m [2020-07-24 13:42:52,332][PID:19][INFO][ForkPoolWorker-6] task_name=redash.tasks.refresh_queries task_id=1216725f-8c91-47fc-a4a4-e502172ce66e Done refreshing queries. Found 0 outdated queries: []
+[35mworker_1              |[0m [2020-07-24 13:42:52,334][PID:19][INFO][ForkPoolWorker-6] Task redash.tasks.refresh_queries[1216725f-8c91-47fc-a4a4-e502172ce66e] succeeded in 0.00821661300006s: None
+[35mworker_1              |[0m [2020-07-24 13:43:22,316][PID:10][INFO][Beat] Scheduler: Sending due task sync_user_details (redash.tasks.sync_user_details)
+[35mworker_1              |[0m [2020-07-24 13:43:22,320][PID:1][INFO][MainProcess] Received task: redash.tasks.sync_user_details[1f69c407-4b39-4f05-a9cc-6ebed7745543]   expires:[2020-07-24 13:44:07.317184+00:00]
+[35mworker_1              |[0m [2020-07-24 13:43:22,322][PID:10][INFO][Beat] Scheduler: Sending due task refresh_queries (redash.tasks.refresh_queries)
+[35mworker_1              |[0m [2020-07-24 13:43:22,324][PID:19][INFO][ForkPoolWorker-6] Task redash.tasks.sync_user_details[1f69c407-4b39-4f05-a9cc-6ebed7745543] succeeded in 0.000774024999828s: None
+[35mworker_1              |[0m [2020-07-24 13:43:22,328][PID:1][INFO][MainProcess] Received task: redash.tasks.refresh_queries[db67c52b-d9d5-4bb6-8a72-c0bb861f1412]  
+[35mworker_1              |[0m [2020-07-24 13:43:22,330][PID:19][INFO][ForkPoolWorker-6] task_name=redash.tasks.refresh_queries task_id=db67c52b-d9d5-4bb6-8a72-c0bb861f1412 Refreshing queries...
+[35mworker_1              |[0m [2020-07-24 13:43:22,336][PID:19][INFO][ForkPoolWorker-6] task_name=redash.tasks.refresh_queries task_id=db67c52b-d9d5-4bb6-8a72-c0bb861f1412 Done refreshing queries. Found 0 outdated queries: []
+[35mworker_1              |[0m [2020-07-24 13:43:22,338][PID:19][INFO][ForkPoolWorker-6] Task redash.tasks.refresh_queries[db67c52b-d9d5-4bb6-8a72-c0bb861f1412] succeeded in 0.00816771299992s: None
+[35mworker_1              |[0m [2020-07-24 13:43:52,331][PID:10][INFO][Beat] Scheduler: Sending due task refresh_queries (redash.tasks.refresh_queries)
+[35mworker_1              |[0m [2020-07-24 13:43:52,335][PID:1][INFO][MainProcess] Received task: redash.tasks.refresh_queries[66981b40-8d02-4523-8ca4-be418116bf42]  
+[35mworker_1              |[0m [2020-07-24 13:43:52,337][PID:19][INFO][ForkPoolWorker-6] task_name=redash.tasks.refresh_queries task_id=66981b40-8d02-4523-8ca4-be418116bf42 Refreshing queries...
+[35mworker_1              |[0m [2020-07-24 13:43:52,344][PID:19][INFO][ForkPoolWorker-6] task_name=redash.tasks.refresh_queries task_id=66981b40-8d02-4523-8ca4-be418116bf42 Done refreshing queries. Found 0 outdated queries: []
+[35mworker_1              |[0m [2020-07-24 13:43:52,347][PID:19][INFO][ForkPoolWorker-6] Task redash.tasks.refresh_queries[66981b40-8d02-4523-8ca4-be418116bf42] succeeded in 0.0104384649999s: None
+[35mworker_1              |[0m [2020-07-24 13:44:22,329][PID:10][INFO][Beat] Scheduler: Sending due task sync_user_details (redash.tasks.sync_user_details)
+[35mworker_1              |[0m [2020-07-24 13:44:22,331][PID:10][INFO][Beat] Scheduler: Sending due task refresh_queries (redash.tasks.refresh_queries)
+[35mworker_1              |[0m [2020-07-24 13:44:22,334][PID:1][INFO][MainProcess] Received task: redash.tasks.sync_user_details[8424ef42-8a90-471f-a504-5266eb0a3e68]   expires:[2020-07-24 13:45:07.330214+00:00]
+[35mworker_1              |[0m [2020-07-24 13:44:22,336][PID:1][INFO][MainProcess] Received task: redash.tasks.refresh_queries[918380a0-83a9-4ad3-8306-f0d4db3fbd23]  
+[35mworker_1              |[0m [2020-07-24 13:44:22,338][PID:19][INFO][ForkPoolWorker-6] Task redash.tasks.sync_user_details[8424ef42-8a90-471f-a504-5266eb0a3e68] succeeded in 0.000678286000038s: None
+[35mworker_1              |[0m [2020-07-24 13:44:22,339][PID:17][INFO][ForkPoolWorker-5] task_name=redash.tasks.refresh_queries task_id=918380a0-83a9-4ad3-8306-f0d4db3fbd23 Refreshing queries...
+[35mworker_1              |[0m [2020-07-24 13:44:22,352][PID:17][INFO][ForkPoolWorker-5] task_name=redash.tasks.refresh_queries task_id=918380a0-83a9-4ad3-8306-f0d4db3fbd23 Done refreshing queries. Found 0 outdated queries: []
+[35mworker_1              |[0m [2020-07-24 13:44:22,355][PID:17][INFO][ForkPoolWorker-5] Task redash.tasks.refresh_queries[918380a0-83a9-4ad3-8306-f0d4db3fbd23] succeeded in 0.015396671s: None
+[35mworker_1              |[0m [2020-07-24 13:44:52,332][PID:10][INFO][Beat] Scheduler: Sending due task refresh_queries (redash.tasks.refresh_queries)
+[35mworker_1              |[0m [2020-07-24 13:44:52,334][PID:1][INFO][MainProcess] Received task: redash.tasks.refresh_queries[f87a5d16-849c-436a-ae34-a91f27a65414]  
+[35mworker_1              |[0m [2020-07-24 13:44:52,336][PID:19][INFO][ForkPoolWorker-6] task_name=redash.tasks.refresh_queries task_id=f87a5d16-849c-436a-ae34-a91f27a65414 Refreshing queries...
+[35mworker_1              |[0m [2020-07-24 13:44:52,342][PID:19][INFO][ForkPoolWorker-6] task_name=redash.tasks.refresh_queries task_id=f87a5d16-849c-436a-ae34-a91f27a65414 Done refreshing queries. Found 0 outdated queries: []
+[35mworker_1              |[0m [2020-07-24 13:44:52,344][PID:19][INFO][ForkPoolWorker-6] Task redash.tasks.refresh_queries[f87a5d16-849c-436a-ae34-a91f27a65414] succeeded in 0.0077416470001s: None
+[35mworker_1              |[0m [2020-07-24 13:45:22,345][PID:10][INFO][Beat] Scheduler: Sending due task sync_user_details (redash.tasks.sync_user_details)
+[35mworker_1              |[0m [2020-07-24 13:45:22,347][PID:10][INFO][Beat] Scheduler: Sending due task refresh_queries (redash.tasks.refresh_queries)
+[35mworker_1              |[0m [2020-07-24 13:45:22,350][PID:1][INFO][MainProcess] Received task: redash.tasks.sync_user_details[6cd12dd8-d229-47ee-a7ef-64ee5ad75968]   expires:[2020-07-24 13:46:07.346494+00:00]
+[35mworker_1              |[0m [2020-07-24 13:45:22,352][PID:1][INFO][MainProcess] Received task: redash.tasks.refresh_queries[0b2a4073-149f-495f-a4e6-4c08c8f9846d]  
+[35mworker_1              |[0m [2020-07-24 13:45:22,353][PID:19][INFO][ForkPoolWorker-6] Task redash.tasks.sync_user_details[6cd12dd8-d229-47ee-a7ef-64ee5ad75968] succeeded in 0.000713385999916s: None
+[35mworker_1              |[0m [2020-07-24 13:45:22,354][PID:17][INFO][ForkPoolWorker-5] task_name=redash.tasks.refresh_queries task_id=0b2a4073-149f-495f-a4e6-4c08c8f9846d Refreshing queries...
+[35mworker_1              |[0m [2020-07-24 13:45:22,361][PID:17][INFO][ForkPoolWorker-5] task_name=redash.tasks.refresh_queries task_id=0b2a4073-149f-495f-a4e6-4c08c8f9846d Done refreshing queries. Found 0 outdated queries: []
+[35mworker_1              |[0m [2020-07-24 13:45:22,363][PID:17][INFO][ForkPoolWorker-5] Task redash.tasks.refresh_queries[0b2a4073-149f-495f-a4e6-4c08c8f9846d] succeeded in 0.00914575100001s: None
+[35mworker_1              |[0m [2020-07-24 13:45:52,366][PID:10][INFO][Beat] Scheduler: Sending due task refresh_queries (redash.tasks.refresh_queries)
+[35mworker_1              |[0m [2020-07-24 13:45:52,369][PID:1][INFO][MainProcess] Received task: redash.tasks.refresh_queries[29897bd1-ccab-4467-84d3-ac86f654b69b]  
+[35mworker_1              |[0m [2020-07-24 13:45:52,371][PID:19][INFO][ForkPoolWorker-6] task_name=redash.tasks.refresh_queries task_id=29897bd1-ccab-4467-84d3-ac86f654b69b Refreshing queries...
+[35mworker_1              |[0m [2020-07-24 13:45:52,379][PID:19][INFO][ForkPoolWorker-6] task_name=redash.tasks.refresh_queries task_id=29897bd1-ccab-4467-84d3-ac86f654b69b Done refreshing queries. Found 0 outdated queries: []
+[33mredis_1               |[0m 1:M 24 Jul 13:41:08.105 * Background saving terminated with success
+[33mredis_1               |[0m 1:M 24 Jul 13:46:09.098 * 100 changes in 300 seconds. Saving...
+[33mredis_1               |[0m 1:M 24 Jul 13:46:09.098 * Background saving started by pid 13
+[33mredis_1               |[0m 13:C 24 Jul 13:46:09.101 * DB saved on disk
+[33mredis_1               |[0m 13:C 24 Jul 13:46:09.101 * RDB: 0 MB of memory used by copy-on-write
+[35mworker_1              |[0m [2020-07-24 13:45:52,382][PID:19][INFO][ForkPoolWorker-6] Task redash.tasks.refresh_queries[29897bd1-ccab-4467-84d3-ac86f654b69b] succeeded in 0.0106492139998s: None
+[35mworker_1              |[0m [2020-07-24 13:46:22,360][PID:10][INFO][Beat] Scheduler: Sending due task sync_user_details (redash.tasks.sync_user_details)
+[35mworker_1              |[0m [2020-07-24 13:46:22,362][PID:10][INFO][Beat] Scheduler: Sending due task cleanup_query_results (redash.tasks.cleanup_query_results)
+[35mworker_1              |[0m [2020-07-24 13:46:22,366][PID:1][INFO][MainProcess] Received task: redash.tasks.sync_user_details[37326300-06e1-48a8-871c-455e25530ac7]   expires:[2020-07-24 13:47:07.361079+00:00]
+[35mworker_1              |[0m [2020-07-24 13:46:22,367][PID:10][INFO][Beat] Scheduler: Sending due task refresh_queries (redash.tasks.refresh_queries)
+[35mworker_1              |[0m [2020-07-24 13:46:22,370][PID:1][INFO][MainProcess] Received task: redash.tasks.cleanup_query_results[fdeb165a-8a39-4c65-91bb-c61fddf804c7]  
+[35mworker_1              |[0m [2020-07-24 13:46:22,375][PID:17][INFO][ForkPoolWorker-5] Running query results clean up (removing maximum of 100 unused results, that are 7 days old or more)
+[35mworker_1              |[0m [2020-07-24 13:46:22,380][PID:17][INFO][ForkPoolWorker-5] task_name=redash.tasks.cleanup_query_results task_id=fdeb165a-8a39-4c65-91bb-c61fddf804c7 Deleted 0 unused query results.
+[35mworker_1              |[0m [2020-07-24 13:46:22,383][PID:1][INFO][MainProcess] Received task: redash.tasks.refresh_queries[87f29a20-1aaf-4465-8109-52d5d206613b]  
+[35mworker_1              |[0m [2020-07-24 13:46:22,384][PID:17][INFO][ForkPoolWorker-5] Task redash.tasks.cleanup_query_results[fdeb165a-8a39-4c65-91bb-c61fddf804c7] succeeded in 0.0085360810001s: None
+[35mworker_1              |[0m [2020-07-24 13:46:22,389][PID:21][INFO][ForkPoolWorker-7] Task redash.tasks.sync_user_details[37326300-06e1-48a8-871c-455e25530ac7] succeeded in 0.0172801159999s: None
+[35mworker_1              |[0m [2020-07-24 13:46:22,390][PID:17][INFO][ForkPoolWorker-5] task_name=redash.tasks.refresh_queries task_id=87f29a20-1aaf-4465-8109-52d5d206613b Refreshing queries...
+[35mworker_1              |[0m [2020-07-24 13:46:22,398][PID:17][INFO][ForkPoolWorker-5] task_name=redash.tasks.refresh_queries task_id=87f29a20-1aaf-4465-8109-52d5d206613b Done refreshing queries. Found 0 outdated queries: []
+[35mworker_1              |[0m [2020-07-24 13:46:22,400][PID:17][INFO][ForkPoolWorker-5] Task redash.tasks.refresh_queries[87f29a20-1aaf-4465-8109-52d5d206613b] succeeded in 0.00997948600002s: None
+[35mworker_1              |[0m [2020-07-24 13:46:52,387][PID:10][INFO][Beat] Scheduler: Sending due task refresh_queries (redash.tasks.refresh_queries)
+[35mworker_1              |[0m [2020-07-24 13:46:52,391][PID:1][INFO][MainProcess] Received task: redash.tasks.refresh_queries[2e3d42dd-7322-42fe-860a-969c4e0b6cde]  
+[35mworker_1              |[0m [2020-07-24 13:46:52,393][PID:21][INFO][ForkPoolWorker-7] task_name=redash.tasks.refresh_queries task_id=2e3d42dd-7322-42fe-860a-969c4e0b6cde Refreshing queries...
+[35mworker_1              |[0m [2020-07-24 13:46:52,549][PID:21][INFO][ForkPoolWorker-7] task_name=redash.tasks.refresh_queries task_id=2e3d42dd-7322-42fe-860a-969c4e0b6cde Done refreshing queries. Found 0 outdated queries: []
+[35mworker_1              |[0m [2020-07-24 13:46:52,553][PID:21][INFO][ForkPoolWorker-7] Task redash.tasks.refresh_queries[2e3d42dd-7322-42fe-860a-969c4e0b6cde] succeeded in 0.159921454s: None
+[35mworker_1              |[0m [2020-07-24 13:47:22,360][PID:10][INFO][Beat] Scheduler: Sending due task sync_user_details (redash.tasks.sync_user_details)
+[35mworker_1              |[0m [2020-07-24 13:47:22,362][PID:1][INFO][MainProcess] Received task: redash.tasks.sync_user_details[5c6285dc-5d0d-495e-a7f1-6cd84231e602]   expires:[2020-07-24 13:48:07.361198+00:00]
+[35mworker_1              |[0m [2020-07-24 13:47:22,365][PID:21][INFO][ForkPoolWorker-7] Task redash.tasks.sync_user_details[5c6285dc-5d0d-495e-a7f1-6cd84231e602] succeeded in 0.000704729000063s: None
+[35mworker_1              |[0m [2020-07-24 13:47:22,387][PID:10][INFO][Beat] Scheduler: Sending due task refresh_queries (redash.tasks.refresh_queries)
+[35mworker_1              |[0m [2020-07-24 13:47:22,390][PID:1][INFO][MainProcess] Received task: redash.tasks.refresh_queries[3ab1b552-0531-4f10-afde-652af2d0073d]  
+[35mworker_1              |[0m [2020-07-24 13:47:22,391][PID:21][INFO][ForkPoolWorker-7] task_name=redash.tasks.refresh_queries task_id=3ab1b552-0531-4f10-afde-652af2d0073d Refreshing queries...
+[35mworker_1              |[0m [2020-07-24 13:47:22,398][PID:21][INFO][ForkPoolWorker-7] task_name=redash.tasks.refresh_queries task_id=3ab1b552-0531-4f10-afde-652af2d0073d Done refreshing queries. Found 0 outdated queries: []
+[35mworker_1              |[0m [2020-07-24 13:47:22,400][PID:21][INFO][ForkPoolWorker-7] Task redash.tasks.refresh_queries[3ab1b552-0531-4f10-afde-652af2d0073d] succeeded in 0.00918932099989s: None
+[35mworker_1              |[0m [2020-07-24 13:47:52,407][PID:10][INFO][Beat] Scheduler: Sending due task refresh_queries (redash.tasks.refresh_queries)
+[35mworker_1              |[0m [2020-07-24 13:47:52,410][PID:1][INFO][MainProcess] Received task: redash.tasks.refresh_queries[60fb83fa-cabc-4241-9e2f-627c0db328fa]  
+[35mworker_1              |[0m [2020-07-24 13:47:52,412][PID:21][INFO][ForkPoolWorker-7] task_name=redash.tasks.refresh_queries task_id=60fb83fa-cabc-4241-9e2f-627c0db328fa Refreshing queries...
+[35mworker_1              |[0m [2020-07-24 13:47:52,419][PID:21][INFO][ForkPoolWorker-7] task_name=redash.tasks.refresh_queries task_id=60fb83fa-cabc-4241-9e2f-627c0db328fa Done refreshing queries. Found 0 outdated queries: []
+[31mserver_1              |[0m [2020-07-24 13:31:18,634][PID:11][DEBUG][redash.destinations] Registering Webhook (webhook) destinations.
+[35mworker_1              |[0m [2020-07-24 13:47:52,422][PID:21][INFO][ForkPoolWorker-7] Task redash.tasks.refresh_queries[60fb83fa-cabc-4241-9e2f-627c0db328fa] succeeded in 0.0100017979998s: None
+[35mworker_1              |[0m 
+[31mserver_1              |[0m [2020-07-24 13:48:13 +0000] [1] [INFO] Handling signal: term
+[31mserver_1              |[0m [2020-07-24 13:48:13 +0000] [9] [INFO] Worker exiting (pid: 9)
+[35mworker_1              |[0m worker: Warm shutdown (MainProcess)
+[35mworker_1              |[0m [2020-07-24 13:48:15,077][PID:1][INFO][MainProcess] beat: Shutting down...
+[31mserver_1              |[0m [2020-07-24 13:48:13 +0000] [11] [INFO] Worker exiting (pid: 11)
+[31mserver_1              |[0m [2020-07-24 13:48:15 +0000] [1] [INFO] Shutting down: Master
+[31mdatavis-dev_server_1 exited with code 0
+[0m[35mworker_1              |[0m  
+[35mworker_1              |[0m  -------------- celery@f830ea64c446 v4.2.1 (windowlicker)
+[35mworker_1              |[0m ---- **** ----- 
+[35mworker_1              |[0m --- * ***  * -- Linux-4.19.130-boot2docker-x86_64-with-Ubuntu-18.04-bionic 2020-07-24 13:31:12
+[35mworker_1              |[0m -- * - **** --- 
+[35mworker_1              |[0m - ** ---------- [config]
+[35mworker_1              |[0m - ** ---------- .> app:         redash:0x7f8be9cfc290
+[35mworker_1              |[0m - ** ---------- .> transport:   redis://redis:6379/0
+[35mworker_1              |[0m - ** ---------- .> results:     redis://redis:6379/0
+[35mworker_1              |[0m - *** --- * --- .> concurrency: 2 (prefork)
+[35mworker_1              |[0m -- ******* ---- .> task events: OFF (enable -E to monitor tasks in this worker)
+[35mworker_1              |[0m --- ***** ----- 
+[35mworker_1              |[0m  -------------- [queues]
+[35mworker_1              |[0m                 .> celery           exchange=celery(direct) key=celery
+[35mworker_1              |[0m                 .> queries          exchange=queries(direct) key=queries
+[35mworker_1              |[0m                 .> scheduled_queries exchange=scheduled_queries(direct) key=scheduled_queries
+[35mworker_1              |[0m                 .> schemas          exchange=schemas(direct) key=schemas
+[35mworker_1              |[0m 
+[35mworker_1              |[0m [tasks]
+[35mworker_1              |[0m   . redash.tasks.check_alerts_for_query
+[35mworker_1              |[0m   . redash.tasks.cleanup_query_results
+[35mworker_1              |[0m   . redash.tasks.execute_query
+[35mworker_1              |[0m   . redash.tasks.record_event
+[35mworker_1              |[0m   . redash.tasks.refresh_queries
+[35mworker_1              |[0m   . redash.tasks.refresh_schema
+[35mworker_1              |[0m   . redash.tasks.refresh_schemas
+[35mworker_1              |[0m   . redash.tasks.send_mail
+[35mworker_1              |[0m   . redash.tasks.subscribe
+[35mworker_1              |[0m   . redash.tasks.sync_user_details
+[35mworker_1              |[0m 
+[35mdatavis-dev_worker_1 exited with code 0
+[0m[32mpostgres_1            |[0m ERROR:  relation "queries" does not exist at character 1019
+[32mpostgres_1            |[0m STATEMENT:  SELECT queries.query AS queries_query, queries.updated_at AS queries_updated_at, queries.created_at AS queries_created_at, queries.id AS queries_id, queries.version AS queries_version, queries.org_id AS queries_org_id, queries.folder_id AS queries_folder_id, queries.data_source_id AS queries_data_source_id, queries.latest_query_data_id AS queries_latest_query_data_id, queries.name AS queries_name, queries.description AS queries_description, queries.query_hash AS queries_query_hash, queries.api_key AS queries_api_key, queries.user_id AS queries_user_id, queries.last_modified_by_id AS queries_last_modified_by_id, queries.is_archived AS queries_is_archived, queries.is_draft AS queries_is_draft, queries.schedule AS queries_schedule, queries.schedule_failures AS queries_schedule_failures, queries.options AS queries_options, queries.search_vector AS queries_search_vector, queries.tags AS queries_tags, query_results_1.id AS query_results_1_id, query_results_1.retrieved_at AS query_results_1_retrieved_at 
+[32mpostgres_1            |[0m 	FROM queries LEFT OUTER JOIN query_results AS query_results_1 ON query_results_1.id = queries.latest_query_data_id 
+[32mpostgres_1            |[0m 	WHERE queries.schedule IS NOT NULL ORDER BY queries.id
+[32mpostgres_1            |[0m LOG:  received smart shutdown request
+[32mpostgres_1            |[0m LOG:  autovacuum launcher shutting down
+[32mpostgres_1            |[0m LOG:  shutting down
+[33mredis_1               |[0m 1:M 24 Jul 13:46:09.198 * Background saving terminated with success
+[32mpostgres_1            |[0m LOG:  database system is shut down
+[33mredis_1               |[0m 1:signal-handler (1595598495) Received SIGTERM scheduling shutdown...
+[33mredis_1               |[0m 1:M 24 Jul 13:48:15.923 # User requested shutdown...
+[33mredis_1               |[0m 1:M 24 Jul 13:48:15.923 * Saving the final RDB snapshot before exiting.
+[33mredis_1               |[0m 1:M 24 Jul 13:48:15.925 * DB saved on disk
+[32mdatavis-dev_postgres_1 exited with code 0
+[0m[33mredis_1               |[0m 1:M 24 Jul 13:48:15.925 # Redis is now ready to exit, bye bye...
+[33mdatavis-dev_redis_1 exited with code 0
+[0m[36mfrontend-dashboard_1  |[0m exec nginx -g 'daemon off;'
+[36mdatavis-dev_frontend-dashboard_1 exited with code 137
+[0m
