@@ -1,6 +1,6 @@
 version: '3.7'
 x-datavis-backend: &datavis-backend
-  image: guwenqing/datavis-backend24:latest
+  image: datavis-server29:latest
   depends_on:
     - postgres
     - redis
@@ -9,8 +9,8 @@ services:
   redis:
     image: redis:3-alpine
     restart: unless-stopped
-    ports:
-     - "6379:6379"
+    #ports:
+     #- "6379:6379"
   postgres:
     image: postgres:9.5-alpine
     volumes:
@@ -18,8 +18,8 @@ services:
     restart: always
     environment:
       POSTGRES_HOST_AUTH_METHOD: "trust"
-    ports:
-     - "5432:5432"
+    #ports:
+     #- "5432:5432"
   server:
     <<: *datavis-backend
     command: server
@@ -44,7 +44,7 @@ services:
       QUEUES: "queries,scheduled_queries,celery,schemas"
       WORKERS_COUNT: 2
   frontend-dashboard:
-    image: guwenqing/datavis-dashboard:latest
+    image: datavis-dashboard29:latest
     restart: always
     ports:
       - "30091:80"
